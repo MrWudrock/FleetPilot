@@ -89,3 +89,5 @@ cd landing
 Env: `FORMSPREE_ID`, `FORM_SUBMIT_EMAIL`, `YANDEX_METRIKA_ID`
 
 **URLs на Vercel:** `/` · `/wireframes` · `/pitch-deck`
+
+**GitHub + autodeploy:** [`docs/GITHUB-VERCEL-SETUP.md`](docs/GITHUB-VERCEL-SETUP.md) · `.\push-github.ps1`

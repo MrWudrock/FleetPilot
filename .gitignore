@@ -1,0 +1,5 @@
+node_modules/
+landing/config.js
+.vercel/
+.DS_Store
+*.local

@@ -1,0 +1,69 @@
+Title,Description,Priority,Status,Estimate,Labels,Project,Milestone
+"[EP-1] Platform & Auth","Epic: Repo, auth, RBAC, fleet dashboard shell",High,Backlog,18,"epic,mvp",FleetPilot,Sprint 1
+FP-1 Monorepo setup,"Next.js + FastAPI + Docker Compose. AC: docker compose up works",High,Backlog,3,"infra,p0,mvp",FleetPilot,Sprint 1
+FP-2 PostgreSQL schema v1,"Organization, User, Vehicle, Integration tables",High,Backlog,5,"backend,p0,mvp",FleetPilot,Sprint 1
+FP-3 Auth signup/login,"JWT auth, org invite flow",High,Backlog,5,"backend,frontend,p0,mvp",FleetPilot,Sprint 1
+FP-4 RBAC roles,"Admin, Dispatcher, FleetManager, Driver, Viewer",High,Backlog,3,"backend,p0,mvp",FleetPilot,Sprint 1
+FP-5 App shell ROI dashboard,"Sidebar nav, KPI cards from wireframes",High,Backlog,3,"frontend,design,p0,mvp",FleetPilot,Sprint 1
+FP-6 CI GitHub Actions,"Lint, test, Docker build on PR",High,Backlog,2,"infra,p0,mvp",FleetPilot,Sprint 1
+FP-7 Dev README seed script,"Local setup + demo fleet 32 vehicles",Medium,Backlog,1,"infra,p1,mvp",FleetPilot,Sprint 1
+FP-8 Sentry env config,"Error tracking + .env.example",Medium,Backlog,2,"infra,p1,mvp",FleetPilot,Sprint 1
+"[EP-2] Integration Hub","Epic: Omnicomm, StavTrack adapters, vehicle mapping",High,Backlog,32,"epic,mvp",FleetPilot,Sprint 2
+FP-10 Integration model,"Provider, encrypted credentials, health status",High,Backlog,3,"backend,p0,mvp",FleetPilot,Sprint 2
+FP-11 Omnicomm adapter,"REST API GPS + fuel polling",High,Backlog,8,"integrations,backend,p0,mvp",FleetPilot,Sprint 2
+FP-12 StavTrack adapter,"REST API GPS sync",High,Backlog,5,"integrations,backend,p0,mvp",FleetPilot,Sprint 2
+FP-13 Unified Vehicle Model,"external_ids mapping UI",High,Backlog,5,"backend,frontend,p0,mvp",FleetPilot,Sprint 2
+FP-14 Celery sync workers,"30 sec polling interval",High,Backlog,3,"infra,backend,p0,mvp",FleetPilot,Sprint 2
+FP-15 Integration Hub UI,"Connect, status, force sync",High,Backlog,5,"frontend,design,p0,mvp",FleetPilot,Sprint 2
+FP-16 Credentials vault,"AES-256 encrypted at rest",High,Backlog,3,"backend,infra,p0,mvp",FleetPilot,Sprint 2
+FP-17 Integration health API,"Alert on sync failure",Medium,Backlog,3,"backend,p1,mvp",FleetPilot,Sprint 2
+FP-18 MSS GLONASS adapter stub,"Stub + integration docs",Medium,Backlog,3,"integrations,p1,mvp",FleetPilot,Sprint 2
+"[EP-3] Fleet Map & Telemetry","Epic: Real-time map, alerts, deviation detection",High,Backlog,24,"epic,mvp",FleetPilot,Sprint 3
+FP-20 TimescaleDB telemetry,"Hypertable vehicle_telemetry",High,Backlog,3,"backend,infra,p0,mvp",FleetPilot,Sprint 3
+FP-21 Fleet map SSE API,"Real-time positions stream",High,Backlog,5,"backend,p0,mvp",FleetPilot,Sprint 3
+FP-22 MapLibre map UI,"Markers, clusters, popups",High,Backlog,8,"frontend,design,p0,mvp",FleetPilot,Sprint 3
+FP-23 Vehicle list filters,"Status, source, driver filters",High,Backlog,3,"frontend,p0,mvp",FleetPilot,Sprint 3
+FP-24 Route deviation detection,"Geo-fence vs planned route",High,Backlog,5,"backend,ai,p0,mvp",FleetPilot,Sprint 3
+FP-25 Alert engine v1,"Types, severity, notifications",High,Backlog,5,"backend,p0,mvp",FleetPilot,Sprint 3
+FP-26 Alerts inbox UI,"Acknowledge workflow",High,Backlog,3,"frontend,design,p0,mvp",FleetPilot,Sprint 3
+FP-27 Driver working time report,"GPS-based hours report",Medium,Backlog,3,"backend,p1,mvp",FleetPilot,Sprint 3
+FP-28 Offline vehicle badge,"Stale data detection",Medium,Backlog,2,"backend,p1,mvp",FleetPilot,Sprint 3
+"[EP-4] Fuel Agent","Epic: Fuel dashboard, anomaly detection, savings",High,Backlog,22,"epic,mvp",FleetPilot,Sprint 4
+FP-30 Fuel baseline model,"l/100km per vehicle baseline",High,Backlog,5,"ai,backend,p0,mvp",FleetPilot,Sprint 4
+FP-31 Fuel anomaly detection,"Sudden drop, off-route refuel",High,Backlog,8,"ai,backend,p0,mvp",FleetPilot,Sprint 4
+FP-32 Confidence gating,">=0.85 auto-alert else review",High,Backlog,3,"ai,backend,p0,mvp",FleetPilot,Sprint 4
+FP-33 Fuel Agent dashboard UI,"KPI cards, charts",High,Backlog,5,"frontend,design,p0,mvp",FleetPilot,Sprint 4
+FP-34 Drain events workflow,"Investigate table + actions",High,Backlog,3,"frontend,backend,p0,mvp",FleetPilot,Sprint 4
+FP-35 Driver fuel rating,"Leaderboard UI",High,Backlog,3,"frontend,p0,mvp",FleetPilot,Sprint 4
+FP-36 Monthly fuel report PDF,"Savings export",Medium,Backlog,3,"backend,p1,mvp",FleetPilot,Sprint 4
+FP-37 Langfuse Fuel Agent,"LLM/anomaly observability",Medium,Backlog,2,"ai,infra,p1,mvp",FleetPilot,Sprint 4
+"[EP-5] Route Agent","Epic: VRP optimization, Yandex Maps, approval",High,Backlog,20,"epic,mvp",FleetPilot,Sprint 5
+FP-40 Yandex Maps Routing,"Traffic-aware routing API",High,Backlog,5,"integrations,backend,p0,mvp",FleetPilot,Sprint 5
+FP-41 OR-Tools VRP solver,"Multi-stop route optimization",High,Backlog,8,"ai,backend,p0,mvp",FleetPilot,Sprint 5
+FP-42 Route comparison UI,"Manual vs optimized side-by-side",High,Backlog,5,"frontend,design,p0,mvp",FleetPilot,Sprint 5
+FP-43 Route approval flow,"Push to driver/TMS after approve",High,Backlog,3,"backend,frontend,p0,mvp",FleetPilot,Sprint 5
+FP-44 LLM route explanation,"Natural language reasoning",Medium,Backlog,3,"ai,backend,p1,mvp",FleetPilot,Sprint 5
+FP-45 Route constraints,"Time windows, capacity, ADR",Medium,Backlog,5,"backend,p1,mvp",FleetPilot,Sprint 5
+FP-46 Route savings audit log,"History + ROI per route",High,Backlog,3,"backend,p0,mvp",FleetPilot,Sprint 5
+FP-47 Traffic weather hook,"Yandex traffic integration",Medium,Backlog,3,"backend,p1,mvp",FleetPilot,Sprint 5
+"[EP-6] Dispatch Agent","Epic: Order intake, classification, assignment",High,Backlog,20,"epic,mvp",FleetPilot,Sprint 6
+FP-50 Dispatch order parse,"Email/Excel/API intake",High,Backlog,8,"ai,backend,p0,mvp",FleetPilot,Sprint 6
+FP-51 Dispatch classify assign,"FTL/LTL + top-3 proposals",High,Backlog,5,"ai,backend,p0,mvp",FleetPilot,Sprint 6
+FP-52 Dispatch UI,"Approve/reject proposals",High,Backlog,5,"frontend,design,p0,mvp",FleetPilot,Sprint 6
+"[EP-7] Maintenance Agent","Epic: Predictive maintenance schedule",High,Backlog,12,"epic,mvp",FleetPilot,Sprint 6
+FP-53 Maintenance rules CAN,"Interval + DTC analysis",High,Backlog,5,"ai,backend,p0,mvp",FleetPilot,Sprint 6
+FP-54 Maintenance schedule UI,"14-day forecast view",High,Backlog,3,"frontend,p0,mvp",FleetPilot,Sprint 6
+"[EP-8] ROI & Analytics","Epic: Savings dashboard, NPV",High,Backlog,14,"epic,mvp",FleetPilot,Sprint 6
+FP-55 ROI dashboard,"Savings by agent, NPV calculator",High,Backlog,5,"backend,frontend,p0,mvp",FleetPilot,Sprint 6
+"[EP-9] Billing & GTM","Epic: Payments, onboarding, launch",High,Backlog,14,"epic,mvp",FleetPilot,Sprint 6
+FP-56 Master TMS adapter,"Bidirectional order sync",Medium,Backlog,5,"integrations,p1,mvp",FleetPilot,Sprint 6
+FP-57 YooKassa billing,"Checkout + vehicle metering",High,Backlog,5,"backend,p0,mvp",FleetPilot,Sprint 6
+FP-58 Billing UI,"Plan, usage, upgrade",Medium,Backlog,3,"frontend,p1,mvp",FleetPilot,Sprint 6
+FP-59 Onboarding wizard,"GPS connect → vehicle map flow",Medium,Backlog,3,"frontend,design,p1,mvp",FleetPilot,Sprint 6
+FP-65 Landing Vercel GTM,"Production landing + pitch deck",Medium,Backlog,2,"infra,p1,mvp",FleetPilot,Sprint 6
+"[EP-10] Observability & Launch","Epic: E2E, security, production",High,Backlog,12,"epic,mvp",FleetPilot,Sprint 6
+FP-60 E2E tests,"Omnicomm → fuel alert → ROI flow",High,Backlog,5,"infra,p0,mvp",FleetPilot,Sprint 6
+FP-61 Production deploy,"Yandex Cloud + runbook",High,Backlog,5,"infra,p0,mvp",FleetPilot,Sprint 6
+FP-62 Founding admin override,"Manual plan for pilots",Medium,Backlog,2,"backend,p1,mvp",FleetPilot,Sprint 6
+FP-63 LLM cost cap,"Rate limit per org",High,Backlog,3,"backend,infra,p0,mvp",FleetPilot,Sprint 6
+FP-64 Security review 152-FZ,"RLS, credentials audit",High,Backlog,3,"infra,p0,mvp",FleetPilot,Sprint 6

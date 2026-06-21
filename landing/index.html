@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetPilot — ИИ-агенты для автопарка: экономия до 26% бюджета</title>
+  <meta name="description" content="Автоматизация транспортных компаний 20–50 ТС. Интеграция с Omnicomm, СтавТРЭК, TMS. Route, Dispatch, Fuel, Maintenance agents." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#059669', 600: '#047857', 700: '#065f46', 900: '#064e3b' },
+            accent: { 400: '#fbbf24', 500: '#f59e0b' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <script>
+    window.FLEETPILOT_CONFIG = window.FLEETPILOT_CONFIG || { formspreeId: 'YOUR_FORMSPREE_ID', siteName: 'FleetPilot' };
+  </script>
+  <script src="analytics.js" defer></script>
+  <script src="form.js" defer></script>
+</head>
+<body class="font-sans text-slate-800 antialiased">
+
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur border-b border-slate-200 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">FP</div>
+        <span class="font-bold text-lg text-brand-900">FleetPilot</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-slate-600">
+        <a href="#agents" class="hover:text-brand-600">ИИ-агенты</a>
+        <a href="#integrations" class="hover:text-brand-600">Интеграции</a>
+        <a href="#economics" class="hover:text-brand-600">ROI</a>
+        <a href="#roadmap" class="hover:text-brand-600">Этапы</a>
+        <a href="/wireframes/" class="hover:text-brand-600">Демо</a>
+        <a href="/pitch-deck" class="hover:text-brand-600">Pitch</a>
+      </div>
+      <a href="#lead-form-section" data-analytics="nav_pilot" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition">Расчёт ROI</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 bg-gradient-to-b from-brand-50 to-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-accent-400/20 text-amber-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
+          <span class="w-2 h-2 bg-accent-500 rounded-full animate-pulse"></span>
+          Pilot · 10 founding slots · интеграция с вашим GPS
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          ИИ-агенты для автопарка — <span class="text-brand-600">экономия до 26%</span> бюджета
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed">
+          FleetPilot подключается к уже установленным Omnicomm, СтавТРЭК и TMS — и автоматизирует маршруты, диспетчеризацию, топливо и ТО. Для компаний с 20–50 единицами техники.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="#lead-form-section" data-analytics="hero_roi" class="inline-flex justify-center items-center bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-600/25">
+            Бесплатный расчёт ROI
+          </a>
+          <a href="/wireframes/" data-analytics="hero_demo" class="inline-flex justify-center items-center border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-brand-600 hover:text-brand-600 transition">
+            Открыть прототип MVP
+          </a>
+          <a href="/pitch-deck" data-analytics="hero_pitch" class="inline-flex justify-center items-center border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-brand-600 hover:text-brand-600 transition">
+            Pitch deck
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-slate-500">Omnicomm · СтавТРЭК · Master TMS · данные в РФ · human-in-the-loop</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="py-20 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">35% бюджета — топливо. 2.8 часа — одна заявка</h2>
+      <p class="text-slate-400 text-center mb-12 max-w-2xl mx-auto">Средняя транспортная компания теряет деньги на ручных процессах, сливах и неоптимальных маршрутах</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-3xl mb-4">⛽</div>
+          <h3 class="text-xl font-semibold mb-2">Топливо — 35% расходов</h3>
+          <p class="text-slate-400">Сливы, перерасход, неоптимальные маршруты. Потери до 60% без контроля.</p>
+        </div>
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-3xl mb-4">📋</div>
+          <h3 class="text-xl font-semibold mb-2">2.8 ч на заявку</h3>
+          <p class="text-slate-400">Диспетчер вручную классифицирует, назначает, контролирует. FleetPilot: 0.4 ч.</p>
+        </div>
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-3xl mb-4">🔧</div>
+          <h3 class="text-xl font-semibold mb-2">Незапланированные простои</h3>
+          <p class="text-slate-400">Ремонты без прогноза. КамАЗ снизил простои на 15% с предиктивным ТО.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agents -->
+  <section id="agents" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">4 ИИ-агента — не замена TMS, а слой поверх</h2>
+      <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">В отличие от AXELOT и «Умной логистики», FleetPilot не требует миграции — работает с вашими системами</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-brand-600">
+          <h3 class="text-xl font-bold mb-2">🗺 Route Agent</h3>
+          <p class="text-slate-600 text-sm mb-4">Оптимизация маршрутов с учётом пробок, погоды, загрузки. Интеграция GPS мониторинга уже установленных на ТС систем.</p>
+          <p class="text-brand-600 font-semibold text-sm">−10–50% расход топлива · −15–20% время в пути</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-blue-600">
+          <h3 class="text-xl font-bold mb-2">📋 Dispatch Agent</h3>
+          <p class="text-slate-600 text-sm mb-4">Приём заявок, классификация FTL/LTL, назначение водителей с обоснованием top-3.</p>
+          <p class="text-blue-600 font-semibold text-sm">2.8 ч → 0.4 ч (−86%)</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-amber-500">
+          <h3 class="text-xl font-bold mb-2">⛽ Fuel Agent</h3>
+          <p class="text-slate-600 text-sm mb-4">Данные с ДУТ Omnicomm: сливы, стиль вождения, рейтинг водителей, месячные отчёты.</p>
+          <p class="text-amber-600 font-semibold text-sm">Экономия 10–60% на топливе</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-purple-600">
+          <h3 class="text-xl font-bold mb-2">🔧 Maintenance Agent</h3>
+          <p class="text-slate-600 text-sm mb-4">Предиктивное ТО по телематике, пробегу, CAN-кодам. Прогноз за 7–14 дней.</p>
+          <p class="text-purple-600 font-semibold text-sm">−15% простои (benchmark)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations -->
+  <section id="integrations" class="py-20 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Integration Hub — российские системы</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 border border-slate-200">
+          <h3 class="font-bold mb-3 text-brand-700">GPS / ГЛОНАСС</h3>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• Omnicomm (P0)</li>
+            <li>• СтавТРЭК</li>
+            <li>• MSS GLONASS</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-slate-200">
+          <h3 class="font-bold mb-3 text-brand-700">TMS / WMS</h3>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• Master TMS · ANTOR</li>
+            <li>• AXELOT WMS</li>
+            <li>• ЯРД 2.0 (YMS)</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-slate-200">
+          <h3 class="font-bold mb-3 text-brand-700">Платформы</h3>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>• «Умная логистика» (sync)</li>
+            <li>• 1С · ЭТрН</li>
+            <li>• Yandex Maps routing</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-sm text-slate-500 mt-8">FleetPilot не заменяет ваш GPS — агрегирует данные из уже установленного оборудования</p>
+    </div>
+  </section>
+
+  <!-- Economics -->
+  <section id="economics" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">Экономика для компании с 30 ТС</h2>
+      <p class="text-slate-600 text-center mb-12">Операционный бюджет ₽12M/год · полная автоматизация</p>
+      <div class="grid md:grid-cols-4 gap-6 mb-12">
+        <div class="text-center p-6 bg-brand-50 rounded-2xl border border-brand-100">
+          <div class="text-3xl font-extrabold text-brand-700">126%</div>
+          <div class="text-sm text-slate-600 mt-1">ROI</div>
+        </div>
+        <div class="text-center p-6 bg-brand-50 rounded-2xl border border-brand-100">
+          <div class="text-3xl font-extrabold text-brand-700">9.5</div>
+          <div class="text-sm text-slate-600 mt-1">мес. окупаемость</div>
+        </div>
+        <div class="text-center p-6 bg-brand-50 rounded-2xl border border-brand-100">
+          <div class="text-3xl font-extrabold text-brand-700">₽3.21M</div>
+          <div class="text-sm text-slate-600 mt-1">экономия/год</div>
+        </div>
+        <div class="text-center p-6 bg-brand-50 rounded-2xl border border-brand-100">
+          <div class="text-3xl font-extrabold text-brand-700">₽7.78M</div>
+          <div class="text-sm text-slate-600 mt-1">NPV (3 года)</div>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 p-3 text-left">Этап</th>
+              <th class="border border-slate-200 p-3 text-left">Инвестиции</th>
+              <th class="border border-slate-200 p-3 text-left">Экономия/год</th>
+              <th class="border border-slate-200 p-3 text-left">ROI</th>
+              <th class="border border-slate-200 p-3 text-left">Окупаемость</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border border-slate-200 p-3">1 · GPS + Fuel</td><td class="border border-slate-200 p-3">₽630K</td><td class="border border-slate-200 p-3">₽970K</td><td class="border border-slate-200 p-3">154%</td><td class="border border-slate-200 p-3">7.8 мес.</td></tr>
+            <tr><td class="border border-slate-200 p-3">1+2 · + TMS + ЭДО</td><td class="border border-slate-200 p-3">₽1.57M</td><td class="border border-slate-200 p-3">₽1.89M</td><td class="border border-slate-200 p-3">120%</td><td class="border border-slate-200 p-3">10 мес.</td></tr>
+            <tr class="bg-brand-50"><td class="border border-slate-200 p-3 font-semibold">1+2+3 · + WMS</td><td class="border border-slate-200 p-3 font-semibold">₽2.55M</td><td class="border border-slate-200 p-3 font-semibold">₽3.21M</td><td class="border border-slate-200 p-3 font-semibold">126%</td><td class="border border-slate-200 p-3 font-semibold">9.5 мес.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section id="roadmap" class="py-20 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Поэтапное внедрение</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-brand-400 font-bold mb-2">Этап 1 · 3 мес.</div>
+          <h3 class="text-xl font-semibold mb-4">GPS + Fuel Agent</h3>
+          <ul class="text-slate-400 text-sm space-y-2">
+            <li>• Интеграция Omnicomm / СтавТРЭК</li>
+            <li>• Карта автопарка real-time</li>
+            <li>• Контроль топлива и сливов</li>
+          </ul>
+          <p class="mt-4 text-brand-400 font-semibold">₽630K · ROI 154%</p>
+        </div>
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-brand-400 font-bold mb-2">Этап 2 · +6 мес.</div>
+          <h3 class="text-xl font-semibold mb-4">Dispatch + Route + ЭТрН</h3>
+          <ul class="text-slate-400 text-sm space-y-2">
+            <li>• Dispatch Agent</li>
+            <li>• Route optimization</li>
+            <li>• TMS sync · электронные накладные</li>
+          </ul>
+          <p class="mt-4 text-brand-400 font-semibold">+₽940K · ₽1.89M/год</p>
+        </div>
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700">
+          <div class="text-brand-400 font-bold mb-2">Этап 3 · +9 мес.</div>
+          <h3 class="text-xl font-semibold mb-4">WMS + сквозная аналитика</h3>
+          <ul class="text-slate-400 text-sm space-y-2">
+            <li>• WMS интеграция</li>
+            <li>• Консолидация грузов</li>
+            <li>• Maintenance Agent</li>
+          </ul>
+          <p class="mt-4 text-brand-400 font-semibold">+₽980K · ₽3.21M/год</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Тарифы SaaS</h2>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="border border-slate-200 rounded-2xl p-8">
+          <h3 class="font-bold text-lg">Starter</h3>
+          <div class="text-3xl font-extrabold mt-2">₽29K<span class="text-base font-normal text-slate-500">/мес</span></div>
+          <ul class="mt-6 text-sm text-slate-600 space-y-2">
+            <li>• до 15 ТС</li>
+            <li>• Route + Fuel Agent</li>
+          </ul>
+        </div>
+        <div class="border-2 border-brand-600 rounded-2xl p-8 relative bg-brand-50">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs px-3 py-1 rounded-full">Popular</span>
+          <h3 class="font-bold text-lg">Pro</h3>
+          <div class="text-3xl font-extrabold mt-2">₽49K<span class="text-base font-normal text-slate-500">/мес</span></div>
+          <ul class="mt-6 text-sm text-slate-600 space-y-2">
+            <li>• до 30 ТС</li>
+            <li>• Все 4 агента</li>
+            <li>• TMS sync</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-2xl p-8">
+          <h3 class="font-bold text-lg">Business</h3>
+          <div class="text-3xl font-extrabold mt-2">₽89K<span class="text-base font-normal text-slate-500">/мес</span></div>
+          <ul class="mt-6 text-sm text-slate-600 space-y-2">
+            <li>• до 50 ТС</li>
+            <li>• ЭТрН · priority support</li>
+          </ul>
+        </div>
+      </div>
+      <div id="founding" class="mt-12 max-w-2xl mx-auto bg-amber-50 border border-amber-200 rounded-2xl p-8 text-center">
+        <h3 class="font-bold text-xl text-amber-900">Founding offer — первые 10 клиентов</h3>
+        <p class="mt-2 text-amber-800">₽49K/мес × 6 мес · onboarding бесплатно · lock ₽59K на 12 мес · Pilot guarantee</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead form -->
+  <section id="lead-form-section" class="py-20 bg-brand-900 text-white">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-2">Расчёт ROI для вашего автопарка</h2>
+      <p class="text-brand-100 text-center mb-8 text-sm">Ответим в течение 24 часов с персональным расчётом экономии</p>
+      <form id="lead-form" data-intent="pilot" class="space-y-4 bg-white/10 backdrop-blur rounded-2xl p-8 border border-white/20">
+        <div>
+          <label class="block text-sm mb-1">Компания</label>
+          <input name="company" required class="w-full px-4 py-3 rounded-lg text-slate-900" placeholder="ООО «ТрансЛогistik»" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm mb-1">Кол-во ТС</label>
+            <input name="fleet_size" type="number" required class="w-full px-4 py-3 rounded-lg text-slate-900" placeholder="30" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Бюджет/год (₽)</label>
+            <input name="budget" class="w-full px-4 py-3 rounded-lg text-slate-900" placeholder="12000000" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm mb-1">GPS-система</label>
+          <select name="gps_provider" class="w-full px-4 py-3 rounded-lg text-slate-900">
+            <option>Omnicomm</option>
+            <option>СтавТРЭК</option>
+            <option>MSS GLONASS</option>
+            <option>Другая / нет</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm mb-1">Email</label>
+          <input name="email" type="email" required class="w-full px-4 py-3 rounded-lg text-slate-900" placeholder="you@company.ru" />
+        </div>
+        <div>
+          <label class="block text-sm mb-1">Телефон</label>
+          <input name="phone" type="tel" class="w-full px-4 py-3 rounded-lg text-slate-900" placeholder="+7" />
+        </div>
+        <button type="submit" class="w-full bg-accent-500 hover:bg-accent-400 text-slate-900 font-bold py-4 rounded-xl transition">Получить расчёт ROI</button>
+        <div id="form-message" class="hidden rounded-xl p-4 text-sm"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="py-8 bg-slate-950 text-slate-500 text-center text-sm">
+    <p>FleetPilot · ИИ-агенты для транспортно-логистических компаний · 2026</p>
+    <p class="mt-2"><a href="/wireframes/" class="text-brand-400 hover:underline">Прототип MVP</a> · <a href="/pitch-deck" class="text-brand-400 hover:underline">Pitch deck</a></p>
+  </footer>
+
+</body>
+</html>

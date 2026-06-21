@@ -1,0 +1,11 @@
+{
+  "name": "fleetpilot-landing",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node generate-config.js",
+    "sync": "powershell -ExecutionPolicy Bypass -File sync-assets.ps1",
+    "predeploy": "npm run sync && npm run build",
+    "dev": "powershell -ExecutionPolicy Bypass -File serve.ps1"
+  }
+}

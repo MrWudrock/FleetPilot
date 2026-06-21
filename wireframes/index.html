@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetPilot Wireframes — MVP</title>
+  <style>
+    :root {
+      --wire-bg: #f4f4f5; --wire-border: #a1a1aa; --wire-fill: #e4e4e7;
+      --wire-text: #52525b; --wire-accent: #059669; --wire-accent2: #2563eb;
+      --wire-annotation: #ea580c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #18181b; color: #fafafa; min-height: 100vh; display: flex; }
+    .nav { width: 280px; background: #27272a; padding: 20px 0; flex-shrink: 0; border-right: 1px solid #3f3f46; overflow-y: auto; height: 100vh; position: sticky; top: 0; }
+    .nav h1 { font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: #a1a1aa; padding: 0 20px 8px; }
+    .nav .subtitle { font-size: 11px; color: #71717a; padding: 0 20px 16px; line-height: 1.4; }
+    .nav a { display: block; padding: 10px 20px; color: #d4d4d8; text-decoration: none; font-size: 13px; border-left: 3px solid transparent; }
+    .nav a:hover { background: #3f3f46; }
+    .nav a.active { background: #3f3f46; border-left-color: var(--wire-accent); color: #fff; }
+    .main { flex: 1; padding: 24px; overflow-y: auto; }
+    .screen { display: none; max-width: 1200px; margin: 0 auto; }
+    .screen.active { display: block; }
+    .screen-header { margin-bottom: 20px; }
+    .screen-header h2 { font-size: 24px; margin-bottom: 4px; }
+    .screen-header p { color: #a1a1aa; font-size: 14px; }
+    .wire { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.4); color: var(--wire-text); font-size: 12px; }
+    .wire-topbar { height: 48px; background: var(--wire-fill); border-bottom: 2px dashed var(--wire-border); display: flex; align-items: center; padding: 0 16px; gap: 12px; }
+    .wire-logo { width: 28px; height: 28px; background: var(--wire-accent); border-radius: 6px; opacity: .85; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 10px; }
+    .wire-search { flex: 1; max-width: 320px; height: 28px; background: #fff; border: 2px dashed var(--wire-border); border-radius: 4px; padding: 0 10px; display: flex; align-items: center; color: #71717a; }
+    .wire-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--wire-border); margin-left: auto; }
+    .wire-body { display: flex; min-height: 640px; }
+    .wire-sidebar { width: 210px; background: #fafafa; border-right: 2px dashed var(--wire-border); padding: 16px 0; }
+    .wire-sidebar-item { padding: 10px 16px; border-left: 3px solid transparent; color: var(--wire-text); font-size: 12px; }
+    .wire-sidebar-item.active { background: #d1fae5; border-left-color: var(--wire-accent); font-weight: 600; }
+    .wire-content { flex: 1; padding: 20px; background: #fff; }
+    .wire-tabs { display: flex; gap: 0; border-bottom: 2px dashed var(--wire-border); margin-bottom: 20px; }
+    .wire-tab { padding: 10px 16px; border-bottom: 2px solid transparent; margin-bottom: -2px; color: #71717a; cursor: pointer; }
+    .wire-tab.active { border-bottom-color: var(--wire-accent); color: var(--wire-accent); font-weight: 600; }
+    .box { border: 2px dashed var(--wire-border); background: var(--wire-fill); border-radius: 4px; }
+    .box-white { background: #fff; border: 2px dashed var(--wire-border); border-radius: 4px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 4px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; }
+    .btn-primary { background: var(--wire-accent); color: #fff; opacity: .9; }
+    .btn-secondary { background: #fff; border: 2px dashed var(--wire-border); color: var(--wire-text); }
+    .btn-blue { background: var(--wire-accent2); color: #fff; opacity: .9; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { padding: 16px; }
+    .card-title { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #3f3f46; }
+    .card-meta { font-size: 11px; color: #71717a; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { border: 1px dashed var(--wire-border); padding: 8px 10px; text-align: left; font-size: 11px; }
+    .table th { background: var(--wire-fill); font-weight: 600; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-yellow { background: #fef9c3; color: #854d0e; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-emerald { background: #d1fae5; color: #065f46; }
+    .annotation { margin-top: 16px; padding: 12px 16px; background: #431407; border-radius: 6px; border-left: 4px solid var(--wire-annotation); font-size: 13px; color: #fed7aa; }
+    .annotation strong { color: #fff; }
+    .stat-card { padding: 16px; text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 800; color: #3f3f46; }
+    .stat-label { font-size: 11px; color: #71717a; margin-top: 4px; }
+    .stat-delta { font-size: 11px; font-weight: 600; margin-top: 4px; }
+    .stat-delta.pos { color: #059669; }
+    .stat-delta.neg { color: #dc2626; }
+    .progress-bar { height: 8px; background: var(--wire-fill); border-radius: 4px; overflow: hidden; margin-top: 8px; }
+    .progress-fill { height: 100%; background: var(--wire-accent); opacity: .7; }
+    .map-placeholder { background: linear-gradient(135deg, #ecfdf5 0%, #dbeafe 100%); min-height: 280px; border: 2px dashed var(--wire-border); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .map-dot { position: absolute; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+    .agent-card { padding: 14px; border-left: 4px solid var(--wire-accent); }
+    .agent-card.blue { border-left-color: var(--wire-accent2); }
+    .agent-card.orange { border-left-color: #ea580c; }
+    .agent-card.purple { border-left-color: #7c3aed; }
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .nav { width: 100%; height: auto; position: relative; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <h1>FleetPilot MVP</h1>
+  <div class="subtitle">ИИ-агенты для автопарка 20–50 ТС · интеграция с Omnicomm, СтавТРЭК, TMS</div>
+  <a href="#dashboard" class="nav-link active" data-screen="dashboard">01 · Dashboard ROI</a>
+  <a href="#fleet-map" class="nav-link" data-screen="fleet-map">02 · Карта автопарка</a>
+  <a href="#integrations" class="nav-link" data-screen="integrations">03 · Integration Hub</a>
+  <a href="#dispatch" class="nav-link" data-screen="dispatch">04 · Dispatch Agent</a>
+  <a href="#route" class="nav-link" data-screen="route">05 · Route Agent</a>
+  <a href="#fuel" class="nav-link" data-screen="fuel">06 · Fuel Agent</a>
+  <a href="#maintenance" class="nav-link" data-screen="maintenance">07 · Maintenance Agent</a>
+  <a href="#roi" class="nav-link" data-screen="roi">08 · ROI Calculator</a>
+  <a href="#onboarding" class="nav-link" data-screen="onboarding">09 · Onboarding</a>
+  <a href="#settings" class="nav-link" data-screen="settings">10 · Настройки</a>
+</nav>
+
+<main class="main">
+
+<!-- 01 Dashboard -->
+<section id="dashboard" class="screen active">
+  <div class="screen-header">
+    <h2>01 · Dashboard ROI</h2>
+    <p>Главная после входа — KPI автопарка, экономия по агентам, алерты</p>
+  </div>
+  <div class="wire">
+    <div class="wire-topbar">
+      <div class="wire-logo">FP</div>
+      <span style="font-weight:700;color:#3f3f46">FleetPilot</span>
+      <div class="wire-search">🔍 ТС, водители, заявки…</div>
+      <span class="badge badge-emerald">32 ТС online</span>
+      <div class="wire-avatar"></div>
+    </div>
+    <div class="wire-body">
+      <div class="wire-sidebar">
+        <div class="wire-sidebar-item active">Dashboard</div>
+        <div class="wire-sidebar-item">Карта</div>
+        <div class="wire-sidebar-item">Заявки</div>
+        <div class="wire-sidebar-item">Маршруты</div>
+        <div class="wire-sidebar-item">Топливо</div>
+        <div class="wire-sidebar-item">ТО</div>
+        <div class="wire-sidebar-item">Интеграции</div>
+        <div class="wire-sidebar-item">ROI</div>
+      </div>
+      <div class="wire-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <div>
+            <div style="font-size:18px;font-weight:700;color:#18181b">ООО «ТрансЛогistik» · Pro</div>
+            <div class="card-meta">32 ТС · Omnicomm + СтавТРЭК · июнь 2026</div>
+          </div>
+          <button class="btn btn-primary">+ Новая заявка</button>
+        </div>
+        <div class="grid-4" style="margin-bottom:20px">
+          <div class="box stat-card">
+            <div class="stat-num">₽267K</div>
+            <div class="stat-label">Экономия за месяц</div>
+            <div class="stat-delta pos">↑ 22% vs прошлый мес.</div>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-num">173%</div>
+            <div class="stat-label">ROI платформы</div>
+            <div class="stat-delta pos">Окупаемость 6.9 мес.</div>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-num">18</div>
+            <div class="stat-label">Заявок сегодня</div>
+            <div class="stat-delta pos">0.4 ч avg (было 2.8)</div>
+          </div>
+          <div class="box stat-card">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Алерта топлива</div>
+            <div class="stat-delta neg">1 критический</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="card-title">Экономия по агентам (₽/мес)</div>
+            <div class="box-white card" style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>🛢 Fuel Agent</span><strong>₽142K</strong></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:53%"></div></div>
+            </div>
+            <div class="box-white card" style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>🗺 Route Agent</span><strong>₽68K</strong></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:25%;background:#2563eb"></div></div>
+            </div>
+            <div class="box-white card" style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>📋 Dispatch Agent</span><strong>₽41K</strong></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:15%;background:#7c3aed"></div></div>
+            </div>
+            <div class="box-white card">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>🔧 Maintenance Agent</span><strong>₽16K</strong></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:6%;background:#ea580c"></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">Активные алерты</div>
+            <div class="box-white card" style="margin-bottom:10px;border-left:4px solid #dc2626">
+              <strong>КАМАЗ А123БВ — подозрительный слив</strong>
+              <div class="card-meta">−47 л за 12 мин · confidence 92% · Fuel Agent</div>
+              <div style="margin-top:8px"><button class="btn btn-secondary" style="font-size:10px">Подробнее</button></div>
+            </div>
+            <div class="box-white card" style="margin-bottom:10px;border-left:4px solid #f59e0b">
+              <strong>МАЗ В456ГД — отклонение от маршрута 8 км</strong>
+              <div class="card-meta">Route Agent · ETA +45 мин</div>
+            </div>
+            <div class="box-white card" style="border-left:4px solid #2563eb">
+              <strong>Volvo Е789ЖЗ — ТО через 3 дня</strong>
+              <div class="card-meta">Maintenance Agent · пробег 98% интервала</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="annotation"><strong>Ключевой экран для ЛПР:</strong> доказуемый ROI по каждому агенту. Коммерческий директор видит ₽267K/мес экономии — аргумент для продления подписки.</div>
+</section>
+
+<!-- 02 Fleet Map -->
+<section id="fleet-map" class="screen">
+  <div class="screen-header">
+    <h2>02 · Карта автопарка</h2>
+    <p>Real-time GPS из Omnicomm / СтавТРЭК / MSS — единая карта без замены оборудования</p>
+  </div>
+  <div class="wire">
+    <div class="wire-topbar">
+      <div class="wire-logo">FP</div>
+      <span style="font-weight:700;color:#3f3f46">FleetPilot · Карта</span>
+      <div class="wire-search">Фильтр: статус, регион, водитель…</div>
+      <div class="wire-avatar"></div>
+    </div>
+    <div class="wire-body">
+      <div class="wire-sidebar">
+        <div class="wire-sidebar-item">Dashboard</div>
+        <div class="wire-sidebar-item active">Карта</div>
+        <div class="wire-sidebar-item">Заявки</div>
+      </div>
+      <div class="wire-content">
+        <div class="grid-2" style="gap:12px">
+          <div class="map-placeholder" style="grid-column:1/-1;min-height:340px">
+            <span style="color:#71717a;font-size:14px">🗺 Карта · 32 ТС · Yandex Maps</span>
+            <div class="map-dot" style="background:#059669;top:30%;left:25%"></div>
+            <div class="map-dot" style="background:#059669;top:45%;left:40%"></div>
+            <div class="map-dot" style="background:#2563eb;top:55%;left:60%"></div>
+            <div class="map-dot" style="background:#dc2626;top:35%;left:70%"></div>
+            <div class="map-dot" style="background:#71717a;top:60%;left:30%"></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-green">● 24 в движении</span>
+          <span class="badge badge-yellow">● 5 простой</span>
+          <span class="badge badge-red">● 1 алерт</span>
+          <span class="badge badge-blue">● 2 offline</span>
+        </div>
+        <table class="table" style="margin-top:16px">
+          <thead><tr><th>Госномер</th><th>Водитель</th><th>Источник</th><th>Статус</th><th>Скорость</th><th>Топливо</th></tr></thead>
+          <tbody>
+            <tr><td>А123БВ777</td><td>Иванов С.</td><td>Omnicomm</td><td><span class="badge badge-red">Слив?</span></td><td>0 км/ч</td><td>62%</td></tr>
+            <tr><td>В456ГД199</td><td>Петров А.</td><td>СтавТРЭК</td><td><span class="badge badge-yellow">Отклонение</span></td><td>72 км/ч</td><td>41%</td></tr>
+            <tr><td>Е789ЖЗ750</td><td>Сидоров М.</td><td>Omnicomm</td><td><span class="badge badge-green">По маршруту</span></td><td>68 км/ч</td><td>78%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="annotation"><strong>Integration-first:</strong> данные агрегируются из уже установленных систем мониторинга. FleetPilot не продаёт GPS-трекеры — только ПО-слой.</div>
+</section>
+
+<!-- 03 Integrations -->
+<section id="integrations" class="screen">
+  <div class="screen-header">
+    <h2>03 · Integration Hub</h2>
+    <p>Подключение Omnicomm, СтавТРЭК, MSS GLONASS, Master TMS — без замены существующих систем</p>
+  </div>
+  <div class="wire">
+    <div class="wire-topbar"><div class="wire-logo">FP</div><span style="font-weight:700;color:#3f3f46">Интеграции</span><div class="wire-avatar"></div></div>
+    <div class="wire-body">
+      <div class="wire-sidebar"><div class="wire-sidebar-item active">Интеграции</div></div>
+      <div class="wire-content">
+        <div style="display:flex;justify-content:space-between;margin-bottom:20px">
+          <div class="card-title" style="margin:0">Подключённые системы</div>
+          <button class="btn btn-primary">+ Добавить коннектор</button>
+        </div>
+        <div class="grid-2">
+          <div class="box-white card agent-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>Omnicomm Online</strong><div class="card-meta">GPS + ДУТ + CAN · 28 ТС</div></div>
+              <span class="badge badge-green">Active</span>
+            </div>
+            <div class="card-meta" style="margin-top:8px">Sync: 30 сек назад · API v2</div>
+          </div>
+          <div class="box-white card agent-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>СтавТРЭК</strong><div class="card-meta">GPS · 4 ТС</div></div>
+              <span class="badge badge-green">Active</span>
+            </div>
+            <div class="card-meta" style="margin-top:8px">Sync: 1 мин назад</div>
+          </div>
+          <div class="box-white card agent-card blue">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>Master TMS</strong><div class="card-meta">Заявки + маршруты</div></div>
+              <span class="badge badge-yellow">Setup</span>
+            </div>
+            <div class="card-meta" style="margin-top:8px">OAuth pending · Dispatch Agent</div>
+          </div>
+          <div class="box-white card" style="opacity:.7">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>MSS GLONASS</strong><div class="card-meta">Не подключено</div></div>
+              <button class="btn btn-secondary" style="font-size:10px">Подключить</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:24px">Unified Vehicle Mapping</div>
+        <table class="table">
+          <thead><tr><th>FleetPilot ID</th><th>Госномер</th><th>Omnicomm ID</th><th>СтавТРЭК ID</th><th>Master TMS</th></tr></thead>
+          <tbody>
+            <tr><td>vh-001</td><td>А123БВ777</td><td>OM-88421</td><td>—</td><td>ORD-4421</td></tr>
+            <tr><td>vh-002</td><td>К012ЛМ777</td><td>—</td><td>ST-99102</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Dispatch -->
+<section id="dispatch" class="screen">
+  <div class="screen-header">
+    <h2>04 · Dispatch Agent</h2>
+    <p>Автоматическая классификация заявок и назначение водителей — 2.8 ч → 0.4 ч</p>
+  </div>
+  <div class="wire">
+    <div class="wire-topbar"><div class="wire-logo">FP</div><span style="font-weight:700;color:#3f3f46">Dispatch Agent</span><div class="wire-avatar"></div></div>
+    <div class="wire-body">
+      <div class="wire-content" style="width:100%">
+        <div class="grid-2">
+          <div>
+            <div class="card-title">Входящая заявка #1847</div>
+            <div class="box-white card">
+              <div class="card-meta">Источник: email · получено 14:32</div>
+              <div style="margin-top:12px;font-size:11px;line-height:1.6;background:#fafafa;padding:12px;border-radius:4px">
+                «Нужна доставка 12 паллет, 8.5т, Москва → Казань, погрузка завтра до 10:00, выгрузка 24.06 до 18:00…»
+              </div>
+            </div>
+            <div class="card-title" style="margin-top:16px">Классификация агента</div>
+            <div class="box-white card">
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+                <span class="badge badge-blue">FTL</span>
+                <span class="badge badge-yellow">Срочная</span>
+                <span class="badge badge-green">Генеральный груз</span>
+              </div>
+              <div class="card-meta">Confidence: 94% · Обработка: 3 мин 12 сек</div>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">Предложения назначения (top-3)</div>
+            <div class="box-white card" style="margin-bottom:10px;border:2px solid #059669">
+              <div style="display:flex;justify-content:space-between"><strong>★ Е789ЖЗ · Сидоров М.</strong><span class="badge badge-green">Score 94</span></div>
+              <div class="card-meta">Свободен · 12 км от точки погрузки · опыт маршрута МСК-КZN</div>
+              <button class="btn btn-primary" style="margin-top:10px;font-size:11px">✓ Назначить</button>
+            </div>
+            <div class="box-white card" style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between"><strong>Н321ОП777 · Козлов Д.</strong><span class="badge badge-blue">Score 87</span></div>
+              <div class="card-meta">Завершит рейс в 09:15 · 28 км до погрузки</div>
+            </div>
+            <div class="box-white card">
+              <div style="display:flex;justify-content:space-between"><strong>Р654СТ199 · Новиков П.</strong><span class="badge badge-blue">Score 79</span></div>
+              <div class="card-meta">Доступен · без опыта маршрута</div>
+            </div>
+            <div class="annotation" style="margin-top:12px;font-size:11px"><strong>Human-in-the-loop:</strong> диспетчер подтверждает назначение. Агент не отправляет водителю автоматически.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Route -->
+<section id="route" class="screen">
+  <div class="screen-header">
+    <h2>05 · Route Agent</h2>
+    <p>Оптимизация маршрутов с учётом пробок, погоды и загрузки — экономия топлива 10–50%</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body" style="min-height:500px">
+      <div class="wire-content" style="width:100%">
+        <div class="grid-2">
+          <div class="map-placeholder" style="min-height:300px">
+            <span style="color:#71717a">Маршрут Москва → Казань · 3 остановки</span>
+            <div style="position:absolute;top:20%;left:15%;font-size:10px;background:#fff;padding:4px 8px;border-radius:4px;border:1px dashed #a1a1aa">МСК ▶</div>
+            <div style="position:absolute;top:50%;left:50%;font-size:10px;background:#fff;padding:4px 8px;border-radius:4px;border:1px dashed #a1a1aa">Н. Новгород</div>
+            <div style="position:absolute;top:70%;left:75%;font-size:10px;background:#fff;padding:4px 8px;border-radius:4px;border:1px dashed #a1a1aa">▶ KZN</div>
+          </div>
+          <div>
+            <div class="card-title">Сравнение маршрутов</div>
+            <table class="table">
+              <thead><tr><th></th><th>Ручной</th><th>Route Agent</th></tr></thead>
+              <tbody>
+                <tr><td>Расстояние</td><td>815 км</td><td><strong style="color:#059669">782 км</strong></td></tr>
+                <tr><td>Время</td><td>11ч 20м</td><td><strong style="color:#059669">10ч 05м</strong></td></tr>
+                <tr><td>Топливо</td><td>245 л</td><td><strong style="color:#059669">228 л</strong></td></tr>
+                <tr><td>Стоимость</td><td>₽18 400</td><td><strong style="color:#059669">₽17 100</strong></td></tr>
+              </tbody>
+            </table>
+            <div style="margin-top:16px"><button class="btn btn-primary">Утвердить маршрут</button> <button class="btn btn-secondary">Изменить</button></div>
+            <div class="card-meta" style="margin-top:12px">OR-Tools VRP + Yandex Maps traffic · LLM объясняет отклонения</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Fuel -->
+<section id="fuel" class="screen">
+  <div class="screen-header">
+    <h2>06 · Fuel Agent</h2>
+    <p>Контроль топлива через ДУТ Omnicomm — сливы, стиль вождения, экономия 10–60%</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body"><div class="wire-content" style="width:100%">
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="box stat-card"><div class="stat-num">₽142K</div><div class="stat-label">Экономия/мес</div></div>
+        <div class="box stat-card"><div class="stat-num">28.4</div><div class="stat-label">л/100км avg</div><div class="stat-delta pos">↓ 12% vs baseline</div></div>
+        <div class="box stat-card"><div class="stat-num">3</div><div class="stat-label">Алерта сливов</div></div>
+        <div class="box stat-card"><div class="stat-num">₽4.2M</div><div class="stat-label">Бюджет топлива/год</div></div>
+      </div>
+      <div class="card-title">Подозрительные события</div>
+      <table class="table">
+        <thead><tr><th>Дата</th><th>ТС</th><th>Событие</th><th>Объём</th><th>Confidence</th><th>Действие</th></tr></thead>
+        <tbody>
+          <tr><td>21.06 08:14</td><td>А123БВ777</td><td>Слив вне АЗС</td><td>−47 л</td><td><span class="badge badge-red">92%</span></td><td><button class="btn btn-secondary" style="font-size:10px">Расследовать</button></td></tr>
+          <tr><td>20.06 22:41</td><td>М456НО199</td><td>Заправка вне маршрута</td><td>+120 л</td><td><span class="badge badge-yellow">71%</span></td><td><button class="btn btn-secondary" style="font-size:10px">Review</button></td></tr>
+        </tbody>
+      </table>
+      <div class="card-title" style="margin-top:20px">Рейтинг водителей по расходу</div>
+      <div class="box-white card">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #e4e4e7"><span>1. Сидоров М.</span><span style="color:#059669">26.1 л/100км ★</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #e4e4e7"><span>2. Петров А.</span><span>28.8 л/100км</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0"><span>8. Иванов С.</span><span style="color:#dc2626">34.2 л/100км ⚠</span></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 07 Maintenance -->
+<section id="maintenance" class="screen">
+  <div class="screen-header">
+    <h2>07 · Maintenance Agent</h2>
+    <p>Предиктивное ТО — прогноз за 7–14 дней, снижение простоев на 15%</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body"><div class="wire-content" style="width:100%">
+      <div class="card-title">График ТО (ближайшие 14 дней)</div>
+      <table class="table">
+        <thead><tr><th>ТС</th><th>Тип</th><th>Прогноз</th><th>Пробег</th><th>Приоритет</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td>Е789ЖЗ750</td><td>Замена масла</td><td>24.06.2026</td><td>98 400 / 100 000</td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-yellow">Запланировано</span></td></tr>
+          <tr><td>А123БВ777</td><td>Тормозные колодки</td><td>02.07.2026</td><td>DTC detected</td><td><span class="badge badge-yellow">Medium</span></td><td><span class="badge badge-blue">Ожидание</span></td></tr>
+          <tr><td>К012ЛМ777</td><td>ТО-2</td><td>15.07.2026</td><td>45 200 / 50 000</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">OK</span></td></tr>
+        </tbody>
+      </table>
+      <div class="grid-3" style="margin-top:20px">
+        <div class="box stat-card"><div class="stat-num">−15%</div><div class="stat-label">Простои (benchmark)</div></div>
+        <div class="box stat-card"><div class="stat-num">₽16K</div><div class="stat-label">Экономия/мес</div></div>
+        <div class="box stat-card"><div class="stat-num">4</div><div class="stat-label">ТС на ТО этой неделе</div></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 08 ROI -->
+<section id="roi" class="screen">
+  <div class="screen-header">
+    <h2>08 · ROI Calculator</h2>
+    <p>Калькулятор окупаемости для компании с 30 ТС · ₽12M бюджет/год</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body"><div class="wire-content" style="width:100%">
+      <div class="grid-2">
+        <div>
+          <div class="card-title">Параметры компании</div>
+          <div class="box-white card">
+            <div style="margin-bottom:10px"><label class="card-meta">Кол-во ТС</label><div class="box" style="padding:8px;margin-top:4px">30</div></div>
+            <div style="margin-bottom:10px"><label class="card-meta">Операционный бюджет/год</label><div class="box" style="padding:8px;margin-top:4px">₽12 000 000</div></div>
+            <div><label class="card-meta">Доля топлива</label><div class="box" style="padding:8px;margin-top:4px">35% (₽4.2M)</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card-title">Итоговые показатели</div>
+          <div class="box-white card">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e4e4e7"><span>Инвестиции (полная интеграция)</span><strong>₽2.55M</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e4e4e7"><span>Годовая экономия</span><strong style="color:#059669">₽3.21M</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e4e4e7"><span>ROI</span><strong>126%</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #e4e4e7"><span>Окупаемость</span><strong>9.5 мес.</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0"><span>NPV (3 года)</span><strong>₽7.78M</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-title" style="margin-top:24px">Поэтапное внедрение</div>
+      <table class="table">
+        <thead><tr><th>Этап</th><th>Бюджет</th><th>Экономия/год</th><th>ROI</th><th>Окупаемость</th></tr></thead>
+        <tbody>
+          <tr><td>1 · GPS + Fuel</td><td>₽630K</td><td>₽970K</td><td>154%</td><td>7.8 мес.</td></tr>
+          <tr><td>1+2 · + TMS + ЭДО</td><td>₽1.57M</td><td>₽1.89M</td><td>120%</td><td>10 мес.</td></tr>
+          <tr><td>1+2+3 · + WMS</td><td>₽2.55M</td><td>₽3.21M</td><td>126%</td><td>9.5 мес.</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;padding:12px;background:#ecfdf5;border-radius:6px;font-size:12px;color:#065f46">
+        <strong>FleetPilot SaaS альтернатива:</strong> ₽49K/мес (Pro) = ₽588K/год OPEX вместо ₽630K CAPEX Этапа 1. Быстрый старт без капитальных затрат.
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 09 Onboarding -->
+<section id="onboarding" class="screen">
+  <div class="screen-header">
+    <h2>09 · Onboarding</h2>
+    <p>Первые 30 дней: аудит → подключение GPS → Fuel Agent → первые savings</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body"><div class="wire-content" style="width:100%;text-align:center;padding:40px">
+      <div style="font-size:20px;font-weight:700;color:#18181b;margin-bottom:24px">Добро пожаловать в FleetPilot</div>
+      <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+        <div class="box-white card" style="width:180px;text-align:center"><div style="font-size:24px">1</div><strong>Профиль компании</strong><div class="card-meta">✓ Готово</div></div>
+        <div class="box-white card" style="width:180px;text-align:center;border:2px solid #059669"><div style="font-size:24px">2</div><strong>Подключить GPS</strong><div class="card-meta">→ Omnicomm</div></div>
+        <div class="box-white card" style="width:180px;text-align:center;opacity:.6"><div style="font-size:24px">3</div><strong>Mapping ТС</strong></div>
+        <div class="box-white card" style="width:180px;text-align:center;opacity:.6"><div style="font-size:24px">4</div><strong>Запуск агентов</strong></div>
+      </div>
+      <button class="btn btn-primary">Подключить Omnicomm</button>
+    </div></div>
+  </div>
+</section>
+
+<!-- 10 Settings -->
+<section id="settings" class="screen">
+  <div class="screen-header">
+    <h2>10 · Настройки</h2>
+    <p>RBAC, billing, agent configuration</p>
+  </div>
+  <div class="wire">
+    <div class="wire-body"><div class="wire-content" style="width:100%">
+      <div class="wire-tabs">
+        <div class="wire-tab active">Пользователи</div>
+        <div class="wire-tab">Агенты</div>
+        <div class="wire-tab">Billing</div>
+        <div class="wire-tab">API keys</div>
+      </div>
+      <table class="table">
+        <thead><tr><th>Имя</th><th>Роль</th><th>Email</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td>Сергей К.</td><td>Admin / Комдиректор</td><td>s.k@translog.ru</td><td><span class="badge badge-green">Active</span></td></tr>
+          <tr><td>Ольга М.</td><td>Dispatcher</td><td>o.m@translog.ru</td><td><span class="badge badge-green">Active</span></td></tr>
+          <tr><td>Алексей В.</td><td>Fleet Manager</td><td>a.v@translog.ru</td><td><span class="badge badge-green">Active</span></td></tr>
+        </tbody>
+      </table>
+      <div class="card-title" style="margin-top:20px">Подписка Pro · ₽49 000/мес · до 30 ТС</div>
+    </div></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+document.querySelectorAll('.nav-link').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var screen = this.getAttribute('data-screen');
+    document.querySelectorAll('.nav-link').forEach(function(l) { l.classList.remove('active'); });
+    document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+    this.classList.add('active');
+    document.getElementById(screen).classList.add('active');
+    history.replaceState(null, '', '#' + screen);
+  });
+});
+var hash = window.location.hash.slice(1);
+if (hash) {
+  var link = document.querySelector('[data-screen="' + hash + '"]');
+  if (link) link.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetPilot — Pitch Deck</title>
+  <style>
+    :root {
+      --bg: #064e3b; --bg2: #022c22; --card: #065f46;
+      --text: #ecfdf5; --muted: #a7f3d0; --accent: #fbbf24;
+      --blue: #60a5fa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg2); color: var(--text); }
+    .deck { height: 100vh; position: relative; }
+    .slide {
+      position: absolute; inset: 0; padding: 48px 64px;
+      display: none; flex-direction: column; justify-content: center;
+      background: linear-gradient(145deg, var(--bg2) 0%, var(--bg) 50%, #047857 100%);
+    }
+    .slide.active { display: flex; }
+    .slide h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+    .slide h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 24px; color: var(--muted); }
+    .slide p, .slide li { font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6; color: #d1fae5; }
+    .slide ul { margin-left: 24px; margin-top: 12px; }
+    .slide li { margin-bottom: 10px; }
+    .tagline { font-size: 1.25rem; color: var(--accent); font-weight: 600; margin-bottom: 32px; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .logo-mark { width: 48px; height: 48px; background: #059669; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .card { background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.15); border-radius: 16px; padding: 20px; }
+    .card strong { display: block; font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
+    .card small { color: var(--muted); font-size: 0.9rem; }
+    .stat { text-align: center; padding: 20px; }
+    .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .highlight { color: var(--accent); font-weight: 700; }
+    .nav-hint { position: fixed; bottom: 20px; right: 24px; font-size: 12px; color: rgba(255,255,255,.4); }
+    .progress { position: fixed; bottom: 0; left: 0; height: 4px; background: var(--accent); transition: width .3s; }
+    .counter { position: fixed; bottom: 20px; left: 24px; font-size: 14px; color: var(--muted); }
+    @media (max-width: 768px) {
+      .slide { padding: 32px 24px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 Title -->
+  <section class="slide active" data-i="1">
+    <div class="logo"><div class="logo-mark">FP</div><span style="font-size:1.5rem;font-weight:700">FleetPilot</span></div>
+    <h1>ИИ-агенты для автопарка<br/>20–50 единиц техники</h1>
+    <p class="tagline">Integration-first · ROI за 7 месяцев · данные в РФ</p>
+    <p style="margin-top:32px;color:var(--muted);font-size:0.95rem">Pitch Deck · Июнь 2026 · Founding round pilots</p>
+  </section>
+
+  <!-- 2 Problem -->
+  <section class="slide" data-i="2">
+    <h2>Проблема</h2>
+    <div class="grid-3">
+      <div class="card"><strong>35% бюджета — топливо</strong><small>Сливы, перерасход, неоптимальные маршруты. Потери до 60%.</small></div>
+      <div class="card"><strong>2.8 ч на заявку</strong><small>Диспетчер вручную классифицирует и назначает. Ошибки = потеря клиента.</small></div>
+      <div class="card"><strong>78% не внедряют ИИ</strong><small>Главный барьер — высокие CAPEX и страх миграции с текущих систем.</small></div>
+    </div>
+    <p style="margin-top:28px">Средняя ТЛК: <span class="highlight">₽10–15M/год</span> операционный бюджет · 20–50 ТС · FTL/LTL</p>
+  </section>
+
+  <!-- 3 Solution -->
+  <section class="slide" data-i="3">
+    <h2>Решение</h2>
+    <h1 style="font-size:2rem">FleetPilot — ИИ-слой поверх вашего GPS и TMS</h1>
+    <ul>
+      <li>Не заменяем Omnicomm, AXELOT, «Умную логистику» — <strong>агрегируем</strong> их данные</li>
+      <li>4 автономных агента с <strong>human-in-the-loop</strong></li>
+      <li>SaaS от <span class="highlight">₽49K/мес</span> вместо CAPEX ₽630K+</li>
+      <li>Окупаемость <span class="highlight">6.9–9.5 месяцев</span></li>
+    </ul>
+  </section>
+
+  <!-- 4 Agents -->
+  <section class="slide" data-i="4">
+    <h2>4 ИИ-агента</h2>
+    <div class="grid-2">
+      <div class="card"><strong>🗺 Route Agent</strong><small>OR-Tools + Yandex Maps. −10–50% топливо, −15–20% время. Интеграция GPS на ТС.</small></div>
+      <div class="card"><strong>📋 Dispatch Agent</strong><small>Классификация заявок, top-3 назначения. 2.8 ч → 0.4 ч (−86%).</small></div>
+      <div class="card"><strong>⛽ Fuel Agent</strong><small>ДУТ Omnicomm: сливы, рейтинг водителей. Экономия 10–60%.</small></div>
+      <div class="card"><strong>🔧 Maintenance Agent</strong><small>Предиктивное ТО по телематике. −15% простои (benchmark).</small></div>
+    </div>
+  </section>
+
+  <!-- 5 Integrations -->
+  <section class="slide" data-i="5">
+    <h2>Integration Hub</h2>
+    <div class="grid-3">
+      <div class="card"><strong>GPS / ГЛОНАСС</strong><small>Omnicomm · СтавТРЭК · MSS GLONASS</small></div>
+      <div class="card"><strong>TMS / WMS</strong><small>Master TMS · ANTOR · AXELOT · ЯРД 2.0</small></div>
+      <div class="card"><strong>Платформы</strong><small>«Умная логистика» · 1С · ЭТрН · Yandex Maps</small></div>
+    </div>
+    <p style="margin-top:28px"><span class="highlight">Unified Vehicle Model</span> — один госномер → ID во всех системах. Sync каждые 30 сек.</p>
+  </section>
+
+  <!-- 6 Market -->
+  <section class="slide" data-i="6">
+    <h2>Рынок и позиция</h2>
+    <div class="grid-2">
+      <div>
+        <ul>
+          <li><strong>Умная логистика</strong> — 40K+ компаний, но без AI-agents для SMB</li>
+          <li><strong>AXELOT</strong> — enterprise WMS/TMS, внедрение 6–18 мес.</li>
+          <li><strong>Omnicomm</strong> — лидер GPS+ДУТ, но single-vendor analytics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <strong>Наша ниша</strong>
+        <small>Mid-market 20–50 ТС · multi-vendor integration · AI agents · быстрый ROI · 152-ФЗ</small>
+        <p style="margin-top:12px;font-size:0.95rem">«Operating system для ИИ-автоматизации автопарка»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 ICP -->
+  <section class="slide" data-i="7">
+    <h2>Целевой клиент (ICP)</h2>
+    <div class="grid-2">
+      <ul>
+        <li>Автопарк: <strong>20–50 ТС</strong> (FTL/LTL, сборные грузы)</li>
+        <li>Бюджет: <strong>₽10–15M/год</strong></li>
+        <li>Уже есть GPS (Omnicomm / СтавТРЭК)</li>
+        <li>Региональные и межрегиональные маршруты</li>
+      </ul>
+      <div class="card">
+        <strong>ЛПР</strong>
+        <small>Коммерческий директор — ROI<br/>Главный диспетчер — champion<br/>Руководитель автопарка — fuel/maintenance</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 Economics -->
+  <section class="slide" data-i="8">
+    <h2>Экономика (reference: 30 ТС)</h2>
+    <div class="grid-4">
+      <div class="stat"><div class="stat-num">126%</div><div class="stat-label">ROI</div></div>
+      <div class="stat"><div class="stat-num">9.5</div><div class="stat-label">мес. окупаемость</div></div>
+      <div class="stat"><div class="stat-num">₽3.21M</div><div class="stat-label">экономия/год</div></div>
+      <div class="stat"><div class="stat-num">₽7.78M</div><div class="stat-label">NPV (3 года)</div></div>
+    </div>
+    <div class="grid-3" style="margin-top:16px">
+      <div class="card"><strong>Этап 1</strong><small>GPS + Fuel · ₽630K · ROI 154%</small></div>
+      <div class="card"><strong>Этап 2</strong><small>+ TMS + ЭДО · ₽1.57M · ₽1.89M/год</small></div>
+      <div class="card"><strong>Этап 3</strong><small>+ WMS · ₽2.55M · ₽3.21M/год</small></div>
+    </div>
+  </section>
+
+  <!-- 9 Business model -->
+  <section class="slide" data-i="9">
+    <h2>Бизнес-модель</h2>
+    <div class="grid-3">
+      <div class="card"><strong>Starter · ₽29K/мес</strong><small>до 15 ТС · Route + Fuel</small></div>
+      <div class="card" style="border-color:var(--accent)"><strong>Pro · ₽49K/мес ★</strong><small>до 30 ТС · все 4 агента</small></div>
+      <div class="card"><strong>Business · ₽89K/мес</strong><small>до 50 ТС · ЭТрН · priority</small></div>
+    </div>
+    <p style="margin-top:28px"><span class="highlight">Founding offer:</span> ₽49K × 6 мес · onboarding бесплатно · lock ₽59K на 12 мес · 10 слотов</p>
+    <p style="margin-top:12px;color:var(--muted)">Gross margin Pro: ~46% → 55–60% at scale</p>
+  </section>
+
+  <!-- 10 Roadmap -->
+  <section class="slide" data-i="10">
+    <h2>Roadmap · 12 недель MVP</h2>
+    <div class="grid-3">
+      <div class="card"><strong>S1–2 · Foundation</strong><small>Auth, Integration Hub, Omnicomm</small></div>
+      <div class="card"><strong>S3–4 · Fleet + Fuel</strong><small>Live map, drain detection</small></div>
+      <div class="card"><strong>S5 · Route</strong><small>VRP optimization, approval</small></div>
+      <div class="card"><strong>S6 · Launch</strong><small>Dispatch, Maintenance, Billing</small></div>
+      <div class="card"><strong>Q2 · TMS sync</strong><small>Master TMS, ANTOR</small></div>
+      <div class="card"><strong>Q3 · WMS</strong><small>AXELOT, ЯРД 2.0</small></div>
+    </div>
+    <p style="margin-top:20px">North Star: <span class="highlight">₽ экономии / автопарк / месяц</span> подтверждённая клиентом</p>
+  </section>
+
+  <!-- 11 Traction -->
+  <section class="slide" data-i="11">
+    <h2>Статус и traction plan</h2>
+    <ul>
+      <li>✅ PRD, архитектура, wireframes (10 экранов), landing</li>
+      <li>✅ Backlog 12 нед. · 65 tickets · ~188 SP</li>
+      <li>🎯 15 discovery-интервью с диспетчерами (Q3 2026)</li>
+      <li>🎯 3 design partners · Omnicomm pilot</li>
+      <li>🎯 4–6 платящих клиентов к концу MVP</li>
+    </ul>
+    <p style="margin-top:24px">Lead magnet: <span class="highlight">бесплатный расчёт ROI</span> для автопарка за 24 часа</p>
+  </section>
+
+  <!-- 12 Ask -->
+  <section class="slide" data-i="12">
+    <h2>The Ask</h2>
+    <h1 style="font-size:2rem">Ищем 10 founding-клиентов</h1>
+    <ul>
+      <li>Автопарк 20–50 ТС с Omnicomm / СтавТРЭК</li>
+      <li>₽49K/мес × 6 мес · onboarding бесплатно</li>
+      <li>Co-marketing кейс · прямой канал с founder</li>
+      <li>Pilot guarantee: −20% расход топлива за 90 дней или −50% подписки</li>
+    </ul>
+    <p style="margin-top:32px;font-size:1.5rem;color:var(--accent);font-weight:700">hello@fleetpilot.ru</p>
+    <p style="color:var(--muted);margin-top:8px">fleetpilot.ru · /wireframes · /pitch-deck</p>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">1 / 12</div>
+<div class="nav-hint">← → или клик · F — fullscreen</div>
+
+<script>
+(function () {
+  var slides = document.querySelectorAll('.slide');
+  var n = slides.length;
+  var i = 0;
+
+  function show(idx) {
+    i = Math.max(0, Math.min(n - 1, idx));
+    slides.forEach(function (s, j) { s.classList.toggle('active', j === i); });
+    document.getElementById('progress').style.width = ((i + 1) / n * 100) + '%';
+    document.getElementById('counter').textContent = (i + 1) + ' / ' + n;
+    history.replaceState(null, '', '#slide-' + (i + 1));
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(n - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  document.getElementById('deck').addEventListener('click', function (e) {
+    if (e.clientX > window.innerWidth / 2) show(i + 1); else show(i - 1);
+  });
+
+  var hash = location.hash.match(/slide-(\d+)/);
+  if (hash) show(parseInt(hash[1], 10) - 1);
+})();
+</script>
+</body>
+</html>

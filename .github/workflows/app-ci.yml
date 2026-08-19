@@ -1,0 +1,96 @@
+name: App CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/**"
+      - ".github/workflows/app-ci.yml"
+  pull_request:
+    paths:
+      - "apps/**"
+      - ".github/workflows/app-ci.yml"
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: fleetpilot
+          POSTGRES_PASSWORD: fleetpilot
+          POSTGRES_DB: fleetpilot
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U fleetpilot -d fleetpilot"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DEBUG: "true"
+      SECRET_KEY: ci-test-secret-key-for-github-actions-only
+      CREDENTIALS_ENCRYPTION_KEY: ci-test-credentials-key-separate-from-jwt
+      ALLOW_PUBLIC_SIGNUP: "true"
+      DATABASE_URL: postgresql://fleetpilot:fleetpilot@localhost:5432/fleetpilot
+      REDIS_URL: redis://localhost:6379/0
+      FP_INTEGRATION_TESTS: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/api/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Apply database migrations
+        run: alembic upgrade head
+
+      - name: Run tests
+        run: pytest tests/ -q --tb=short
+
+      - name: Compile Python sources
+        run: python -m compileall app alembic scripts
+
+      - name: Build API Docker image
+        run: docker build -t fleetpilot-api:ci .
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8800

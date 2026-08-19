@@ -37,6 +37,7 @@ flowchart TB
         DISP[Dispatch Agent]
         FUEL[Fuel Agent]
         MAINT[Maintenance Agent]
+        PERMIT[Permit Agent]
         LLM[LLM Router]
         RULES[Rules Engine]
     end
@@ -47,6 +48,7 @@ flowchart TB
         MSS[MSS GLONASS]
         TMS[Master TMS / ANTOR]
         MAPS[Yandex Maps]
+        RDM[RosdorMonitoring]
     end
 
     subgraph Data["Data"]
@@ -62,8 +64,9 @@ flowchart TB
     API --> WF
     HUB --> OMNI & STAV & MSS & TMS
     WF --> ORCH
-    ORCH --> ROUTE & DISP & FUEL & MAINT
+    ORCH --> ROUTE & DISP & FUEL & MAINT & PERMIT
     ROUTE --> MAPS
+    PERMIT --> RDM[RosdorMonitoring]
     ORCH --> LLM & RULES
     API --> PG & REDIS & S3
     HUB --> TS
@@ -245,6 +248,12 @@ POST   /api/v1/agents/dispatch/process   # Dispatch Agent
 GET    /api/v1/agents/fuel/alerts        # Fuel alerts
 GET    /api/v1/agents/fuel/report        # Monthly report
 GET    /api/v1/agents/maintenance/schedule
+
+# Permits (негабарит · Росдормониторинг)
+POST   /api/v1/agents/permit/analyze-route
+GET    /api/v1/agents/permit/requests
+POST   /api/v1/agents/permit/requests
+POST   /api/v1/agents/permit/requests/{id}/approve
 
 # Orders & Routes
 POST   /api/v1/orders                    # Create/import order

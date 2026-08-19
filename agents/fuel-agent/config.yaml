@@ -1,0 +1,154 @@
+# Fuel Agent — Конфигурация
+
+agent:
+  name: fuel-agent
+  version: "1.0"
+  description: "Контроль расхода топлива, обнаружение сливов, рейтинг водителей"
+
+# Интеграции
+integrations:
+  omnicomm:
+    enabled: true
+    api_url: "https://online.omnicomm.ru/api/v2"
+    api_key: "${OMNICOMM_API_KEY}"
+    sync_interval_sec: 30
+    endpoints:
+      fuel_level: /vehicles/{id}/fuel
+      can_data: /vehicles/{id}/can
+      gps: /vehicles/{id}/gps
+  stavtrack:
+    enabled: false
+    api_url: "${STAVTRACK_API_URL}"
+    api_key: "${STAVTRACK_API_KEY}"
+    sync_interval_sec: 60
+  gas_stations:
+    enabled: true
+    database: local
+    update_interval_days: 7
+
+# Детекция сливов
+drain_detection:
+  algorithm: statistical
+  methods:
+    - name: sudden_drop
+      description: "Резкое падение уровня топлива"
+      threshold_liters: 10
+      threshold_time_min: 5
+      confidence_boost: 0.15
+    - name: off_route_drain
+      description: "Слив вне маршрута и АЗС"
+      min_distance_from_route_km: 2
+      min_distance_from_station_km: 5
+      confidence_boost: 0.20
+    - name: overnight_drain
+      description: "Слив в ночное время на стоянке"
+      time_window: "22:00-06:00"
+      min_liters: 15
+      confidence_boost: 0.10
+    - name: pattern_anomaly
+      description: "Отклонение от типичного паттерна"
+      std_deviations: 2.5
+      min_samples: 30
+      confidence_boost: 0.15
+  confidence_threshold: 0.85
+  auto_alert_above: 0.85
+  human_review_below: 0.85
+
+# Базовые нормы расхода
+consumption:
+  calculation_method: regression
+  factors:
+    vehicle_type:
+      truck_tractler: 28.0
+      truck_rigid: 24.0
+      van: 12.0
+      bus: 18.0
+    conditions:
+      city: 1.25
+      highway: 0.85
+      mixed: 1.0
+      winter: 1.15
+      summer: 1.0
+  baseline_period_days: 90
+  min_samples_for_baseline: 50
+
+# Рейтинг водителей
+driver_scoring:
+  metrics:
+    - name: fuel_efficiency
+      weight: 0.40
+      description: "л/100км vs baseline"
+    - name: harsh_braking
+      weight: 0.20
+      description: "Резкие торможения"
+    - name: harsh_acceleration
+      weight: 0.15
+      description: "Резкие разгоны"
+    - name: idling_time
+      weight: 0.15
+      description: "Время работы на холостом ходу"
+    - name: speed_violations
+      weight: 0.10
+      description: "Превышения скорости"
+  scoring_scale: 1-100
+  update_frequency: daily
+
+# LLM для отчётов
+llm:
+  model: claude-sonnet
+  temperature: 0.3
+  max_tokens: 2000
+  system_prompt_file: prompts/system.md
+
+# Алерты
+alerts:
+  channels:
+    - type: email
+      enabled: true
+    - type: sms
+      enabled: false
+    - type: push
+      enabled: true
+    - type: webhook
+      enabled: false
+      url: "${ALERT_WEBHOOK_URL}"
+  escalation:
+    - confidence: 0.95
+      severity: critical
+      notify: [fleet_manager, ceo]
+    - confidence: 0.85
+      severity: high
+      notify: [fleet_manager]
+    - confidence: 0.70
+      severity: medium
+      notify: [dispatcher]
+
+# Отчёты
+reports:
+  daily_summary:
+    enabled: true
+    send_time: "09:00"
+    recipients: [fleet_manager]
+  monthly_report:
+    enabled: true
+    send_day: 1
+    send_time: "10:00"
+    recipients: [fleet_manager, ceo]
+    include:
+      - savings_vs_baseline
+      - driver_rankings
+      - top_incidents
+      - recommendations
+
+# Хранение данных
+storage:
+  telemetry_retention_days: 365
+  alerts_retention_days: 180
+  reports_retention_days: 730
+
+# Логирование
+logging:
+  level: INFO
+  log_fuel_events: true
+  log_alerts: true
+  log_scoring: true

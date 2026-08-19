@@ -1,0 +1,108 @@
+# Dispatch Agent — Конфигурация
+
+agent:
+  name: dispatch-agent
+  version: "1.0"
+  description: "Автоматическая классификация заявок и назначение водителей"
+
+# Интеграции
+integrations:
+  email:
+    enabled: true
+    imap_host: "${IMAP_HOST}"
+    imap_port: 993
+    email: "${DISPATCH_EMAIL}"
+    password: "${DISPATCH_EMAIL_PASSWORD}"
+    check_interval_sec: 60
+  excel:
+    enabled: true
+    supported_formats: [xlsx, xls, csv]
+    max_file_size_mb: 10
+  tms:
+    provider: master_tms
+    api_url: "${TMS_API_URL}"
+    api_key: "${TMS_API_KEY}"
+    sync_interval_min: 5
+  gps_providers:
+    - omnicomm
+    - stavtrack
+
+# Классификация
+classification:
+  llm:
+    model: claude-sonnet
+    temperature: 0.2
+    max_tokens: 1000
+  categories:
+    shipment_type: [ftl, ltl, partial, express]
+    cargo_type: [general, perishable, hazardous, oversized, fragile]
+    urgency: [standard, urgent, critical]
+  confidence_threshold: 0.85
+  fallback_rule_based: true
+
+# Матчинг ТС
+matching:
+  algorithm: weighted_scoring
+  weights:
+    distance_to_pickup: 0.30
+    driver_experience: 0.25
+    vehicle_capacity: 0.20
+    driver_hours_available: 0.15
+    client_relationship: 0.10
+  max_distance_to_pickup_km: 100
+  min_capacity_utilization: 0.6
+  max_results: 3
+
+# Назначение
+assignment:
+  require_approval: true
+  approval_timeout_hours: 1
+  auto_assign_if_no_response: false
+  notify:
+    - dispatcher
+    - driver
+  notification_channels:
+    - email
+    - sms
+    - push
+
+# Временные окна
+time_windows:
+  default_loading_time_min: 30
+  default_unloading_time_min: 30
+  buffer_before_window_min: 15
+  buffer_after_window_min: 15
+
+# Ограничения водителей
+driver_constraints:
+  max_driving_hours: 9
+  max_working_hours: 14
+  min_rest_hours: 11
+  max_daily_mileage_km: 600
+
+# LLM для обоснования
+llm:
+  model: claude-sonnet
+  temperature: 0.3
+  max_tokens: 1500
+  system_prompt_file: prompts/system.md
+
+# Очередь обработки
+queue:
+  max_concurrent: 10
+  priority_rules:
+    - condition: "urgency == 'critical'"
+      priority: 1
+    - condition: "urgency == 'urgent'"
+      priority: 2
+    - condition: "shipment_type == 'ftl'"
+      priority: 3
+    - condition: "default"
+      priority: 5
+
+# Логирование
+logging:
+  level: INFO
+  log_classifications: true
+  log_assignments: true
+  retention_days: 180

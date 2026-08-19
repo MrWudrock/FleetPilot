@@ -1,5 +1,40 @@
 node_modules/
 landing/config.js
+landing/.env
 .vercel/
 .DS_Store
 *.local
+.linear.env
+docs/fleet-ai/linear.env
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+apps/api/.venv/
+
+# Next.js
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+
+# Desktop (Electron)
+apps/desktop/node_modules/
+apps/desktop/ui/
+apps/desktop/release/
+apps/desktop/dist/
+
+# Large binary (regenerate via scripts/publish-desktop.ps1)
+landing/downloads/*.exe
+!landing/downloads/.gitkeep
+
+# Docker
+postgres_data/
+.vercel
+.env*
+
+# Graphify
+graphify-out/
+**/graphify-out/

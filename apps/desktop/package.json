@@ -1,0 +1,54 @@
+{
+  "name": "@fleetpilot/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FleetPilot desktop client for Windows",
+  "author": "FleetPilot",
+  "main": "electron/main.js",
+  "scripts": {
+    "build:web": "npm run build --prefix ../web && node scripts/copy-ui.js",
+    "dev": "electron .",
+    "dist:win": "npm run build:web && electron-builder --win --x64",
+    "pack:dir": "npm run build:web && electron-builder --win --x64 --dir"
+  },
+  "build": {
+    "appId": "ru.fleetpilot.desktop",
+    "productName": "FleetPilot",
+    "copyright": "Copyright © FleetPilot",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "ui/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.js"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "FleetPilot-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "FleetPilot",
+      "installerLanguages": ["ru_RU", "en_US"],
+      "language": "1049"
+    }
+  },
+  "devDependencies": {
+    "electron": "^34.5.8",
+    "electron-builder": "^25.1.8"
+  }
+}

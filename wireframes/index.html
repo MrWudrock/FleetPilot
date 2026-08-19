@@ -76,16 +76,33 @@
     .agent-card.purple { border-left-color: #7c3aed; }
     @media (max-width: 900px) {
       body { flex-direction: column; }
-      .nav { width: 100%; height: auto; position: relative; }
+      .nav { width: 100%; height: auto; position: relative; overflow-y: visible; }
+      .nav-links { display: none; }
+      .nav-links.open { display: block; }
+      .nav-toggle { display: flex !important; }
       .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .wire-body { flex-direction: column; }
+      .wire-sidebar { width: 100%; border-right: none; border-bottom: 2px dashed var(--wire-border); height: auto; }
+      .wire-content { padding: 12px; }
+      .screen { padding: 0 8px; }
     }
+    .nav-toggle { display: none; align-items: center; justify-content: center; padding: 8px; cursor: pointer; color: #d4d4d8; }
+    .nav-toggle:hover { background: #3f3f46; border-radius: 4px; }
   </style>
 </head>
 <body>
 
 <nav class="nav">
-  <h1>FleetPilot MVP</h1>
-  <div class="subtitle">ИИ-агенты для автопарка 20–50 ТС · интеграция с Omnicomm, СтавТРЭК, TMS</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px">
+    <div>
+      <h1>FleetPilot MVP</h1>
+      <div class="subtitle">ИИ-агенты для автопарка 20–50 ТС · интеграция с Omnicomm, СтавТРЭК, TMS</div>
+    </div>
+    <div class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </div>
+  </div>
+  <div class="nav-links">
   <a href="#dashboard" class="nav-link active" data-screen="dashboard">01 · Dashboard ROI</a>
   <a href="#fleet-map" class="nav-link" data-screen="fleet-map">02 · Карта автопарка</a>
   <a href="#integrations" class="nav-link" data-screen="integrations">03 · Integration Hub</a>
@@ -96,6 +113,7 @@
   <a href="#roi" class="nav-link" data-screen="roi">08 · ROI Calculator</a>
   <a href="#onboarding" class="nav-link" data-screen="onboarding">09 · Onboarding</a>
   <a href="#settings" class="nav-link" data-screen="settings">10 · Настройки</a>
+  </div>
 </nav>
 
 <main class="main">
@@ -554,6 +572,8 @@ document.querySelectorAll('.nav-link').forEach(function(link) {
     this.classList.add('active');
     document.getElementById(screen).classList.add('active');
     history.replaceState(null, '', '#' + screen);
+    var navLinks = document.querySelector('.nav-links');
+    if (navLinks) navLinks.classList.remove('open');
   });
 });
 var hash = window.location.hash.slice(1);

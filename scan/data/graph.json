@@ -1,0 +1,1327 @@
+{
+  "meta": {
+    "project": "FleetPilot",
+    "repo": "startapp log",
+    "generated_at": "2026-08-18T11:56:31.343565+00:00",
+    "scanner": "fleetpilot-scan/1.0"
+  },
+  "personality": {
+    "title": "Fleet Operator",
+    "tagline": "Ops-first B2B SaaS for transport companies",
+    "dominant_trait": "fleet_ops",
+    "traits": {
+      "fleet_ops": 18,
+      "multi_tenant": 1,
+      "agent_ready": 6,
+      "integration_heavy": 4,
+      "ui_surface": 11,
+      "api_depth": 14
+    }
+  },
+  "stats": {
+    "files_python": 64,
+    "files_typescript": 29,
+    "loc_python": 4479,
+    "loc_typescript": 3527,
+    "nodes": 61,
+    "edges": 142
+  },
+  "kind_groups": {
+    "Clients": [
+      "client",
+      "page",
+      "component",
+      "lib",
+      "desktop",
+      "landing"
+    ],
+    "API": [
+      "api",
+      "route",
+      "service",
+      "schema",
+      "core"
+    ],
+    "Stores": [
+      "store",
+      "model",
+      "migration"
+    ],
+    "Agents": [
+      "agent"
+    ],
+    "External": [
+      "external",
+      "integration"
+    ],
+    "Infra": [
+      "infra",
+      "ci",
+      "script",
+      "doc"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "app:web",
+      "label": "Next.js Web",
+      "kind": "client",
+      "layer": "apps",
+      "path": "",
+      "summary": "Web UI · dashboard, fleet ops",
+      "metrics": {}
+    },
+    {
+      "id": "app:desktop",
+      "label": "Electron Desktop",
+      "kind": "client",
+      "layer": "apps",
+      "path": "",
+      "summary": "Windows shell · static Next export",
+      "metrics": {}
+    },
+    {
+      "id": "app:landing",
+      "label": "Marketing Landing",
+      "kind": "client",
+      "layer": "apps",
+      "path": "",
+      "summary": "Vercel · CTA + installer download",
+      "metrics": {}
+    },
+    {
+      "id": "app:api",
+      "label": "FastAPI API",
+      "kind": "api",
+      "layer": "apps",
+      "path": "",
+      "summary": "Core backend · :8800",
+      "metrics": {}
+    },
+    {
+      "id": "store:postgres",
+      "label": "PostgreSQL",
+      "kind": "store",
+      "layer": "stores",
+      "path": "",
+      "summary": "Tenant data · Alembic migrations",
+      "metrics": {}
+    },
+    {
+      "id": "store:redis",
+      "label": "Redis",
+      "kind": "store",
+      "layer": "stores",
+      "path": "",
+      "summary": "Invite tokens · rate limits",
+      "metrics": {}
+    },
+    {
+      "id": "infra:docker",
+      "label": "Docker Compose",
+      "kind": "infra",
+      "layer": "infra",
+      "path": "",
+      "summary": "postgres + redis + api",
+      "metrics": {}
+    },
+    {
+      "id": "infra:ci",
+      "label": "GitHub Actions",
+      "kind": "infra",
+      "layer": "infra",
+      "path": "",
+      "summary": "app-ci · preview · deploy",
+      "metrics": {}
+    },
+    {
+      "id": "route:health",
+      "label": "Health / Meta",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "health.py · readiness",
+      "metrics": {}
+    },
+    {
+      "id": "route:auth",
+      "label": "Auth",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "signup · login · JWT · invite",
+      "metrics": {}
+    },
+    {
+      "id": "route:analytics",
+      "label": "Analytics ROI",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "KPI dashboard data",
+      "metrics": {}
+    },
+    {
+      "id": "route:fleet",
+      "label": "Fleet Ops",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "vehicles · fuel · orders · integrations",
+      "metrics": {}
+    },
+    {
+      "id": "route:ops",
+      "label": "Ops UI",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "routes · maintenance · settings",
+      "metrics": {}
+    },
+    {
+      "id": "route:permit",
+      "label": "Permit Agent API",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "AI permit analysis",
+      "metrics": {}
+    },
+    {
+      "id": "route:rosdor",
+      "label": "Rosdor Integration",
+      "kind": "route",
+      "layer": "api",
+      "path": "",
+      "summary": "registry check · sync",
+      "metrics": {}
+    },
+    {
+      "id": "ext:wialon",
+      "label": "Wialon Local",
+      "kind": "external",
+      "layer": "external",
+      "path": "",
+      "summary": "GPS telematics DEMO",
+      "metrics": {}
+    },
+    {
+      "id": "ext:transmanager",
+      "label": "TransManager",
+      "kind": "external",
+      "layer": "external",
+      "path": "",
+      "summary": "TMS orders DEMO",
+      "metrics": {}
+    },
+    {
+      "id": "ext:rosdor",
+      "label": "Rosdor Monitoring",
+      "kind": "external",
+      "layer": "external",
+      "path": "",
+      "summary": "Permit registry",
+      "metrics": {}
+    },
+    {
+      "id": "ext:rosdor_parser",
+      "label": "Parser API",
+      "kind": "external",
+      "layer": "external",
+      "path": "",
+      "summary": "External permit lookup",
+      "metrics": {}
+    },
+    {
+      "id": "agent:dispatch",
+      "label": "Dispatch Agent",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "agents/dispatch-agent",
+      "summary": "LLM template · dispatch-agent",
+      "metrics": {}
+    },
+    {
+      "id": "agent:fuel",
+      "label": "Fuel Agent",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "agents/fuel-agent",
+      "summary": "LLM template · fuel-agent",
+      "metrics": {}
+    },
+    {
+      "id": "agent:maintenance",
+      "label": "Maintenance Agent",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "agents/maintenance-agent",
+      "summary": "LLM template · maintenance-agent",
+      "metrics": {}
+    },
+    {
+      "id": "agent:permit",
+      "label": "Permit Agent",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "agents/permit-agent",
+      "summary": "LLM template · permit-agent",
+      "metrics": {}
+    },
+    {
+      "id": "agent:route",
+      "label": "Route Agent",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "agents/route-agent",
+      "summary": "LLM template · route-agent",
+      "metrics": {}
+    },
+    {
+      "id": "agent:shared",
+      "label": "Shared Agent Lib",
+      "kind": "agent",
+      "layer": "agents",
+      "path": "",
+      "summary": "event_bus · alerting · vehicle_model",
+      "metrics": {}
+    },
+    {
+      "id": "page:login",
+      "label": "Login",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/login/page.tsx",
+      "summary": "/login",
+      "metrics": {}
+    },
+    {
+      "id": "page:signup",
+      "label": "Signup",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/signup/page.tsx",
+      "summary": "/signup",
+      "metrics": {}
+    },
+    {
+      "id": "page:dashboard",
+      "label": "ROI Dashboard",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/dashboard/page.tsx",
+      "summary": "/dashboard",
+      "metrics": {}
+    },
+    {
+      "id": "page:dispatch",
+      "label": "Dispatch",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/dispatch/page.tsx",
+      "summary": "/dispatch",
+      "metrics": {}
+    },
+    {
+      "id": "page:map",
+      "label": "Fleet Map",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/map/page.tsx",
+      "summary": "/map",
+      "metrics": {}
+    },
+    {
+      "id": "page:routes",
+      "label": "Routes",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/routes/page.tsx",
+      "summary": "/routes",
+      "metrics": {}
+    },
+    {
+      "id": "page:fuel",
+      "label": "Fuel Alerts",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/fuel/page.tsx",
+      "summary": "/fuel",
+      "metrics": {}
+    },
+    {
+      "id": "page:maintenance",
+      "label": "Maintenance",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/maintenance/page.tsx",
+      "summary": "/maintenance",
+      "metrics": {}
+    },
+    {
+      "id": "page:integrations",
+      "label": "Integrations",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/integrations/page.tsx",
+      "summary": "/integrations",
+      "metrics": {}
+    },
+    {
+      "id": "page:settings",
+      "label": "Settings",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/settings/page.tsx",
+      "summary": "/settings",
+      "metrics": {}
+    },
+    {
+      "id": "page:pilot",
+      "label": "Permits Pilot",
+      "kind": "page",
+      "layer": "client",
+      "path": "apps/web/src/app/pilot/page.tsx",
+      "summary": "/pilot",
+      "metrics": {}
+    },
+    {
+      "id": "model:enums",
+      "label": "Enums",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/enums.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:fuel_alert",
+      "label": "Fuel Alert",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/fuel_alert.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:integration",
+      "label": "Integration",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/integration.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:maintenance_task",
+      "label": "Maintenance Task",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/maintenance_task.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:order",
+      "label": "Order",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/order.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:organization",
+      "label": "Organization",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/organization.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:permit_audit_log",
+      "label": "Permit Audit Log",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/permit_audit_log.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:permit_request",
+      "label": "Permit Request",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/permit_request.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:savings_entry",
+      "label": "Savings Entry",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/savings_entry.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:user",
+      "label": "User",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/user.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "model:vehicle",
+      "label": "Vehicle",
+      "kind": "model",
+      "layer": "store",
+      "path": "apps/api/app/models/vehicle.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:analytics_service",
+      "label": "Analytics Service",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/analytics_service.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:auth_service",
+      "label": "Auth Service",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/auth_service.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:demo_telematics",
+      "label": "Demo Telematics",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/demo_telematics.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:fleet_service",
+      "label": "Fleet Service",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/fleet_service.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:ops_service",
+      "label": "Ops Service",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/ops_service.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:permit_rules",
+      "label": "Permit Rules",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/permit_rules.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "service:permit_service",
+      "label": "Permit Service",
+      "kind": "service",
+      "layer": "api",
+      "path": "apps/api/app/services/permit_service.py",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:analytics",
+      "label": "analytics",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/analytics.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:api",
+      "label": "api",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/api.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:auth",
+      "label": "auth",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/auth.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:config",
+      "label": "config",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/config.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:fleet",
+      "label": "fleet",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/fleet.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:permit",
+      "label": "permit",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/permit.ts",
+      "summary": "",
+      "metrics": {}
+    },
+    {
+      "id": "lib:query-keys",
+      "label": "query-keys",
+      "kind": "lib",
+      "layer": "client",
+      "path": "apps/web/src/lib/query-keys.ts",
+      "summary": "",
+      "metrics": {}
+    }
+  ],
+  "edges": [
+    {
+      "source": "app:api",
+      "target": "store:postgres",
+      "kind": "persists"
+    },
+    {
+      "source": "app:api",
+      "target": "store:redis",
+      "kind": "cache"
+    },
+    {
+      "source": "infra:docker",
+      "target": "app:api",
+      "kind": "runs"
+    },
+    {
+      "source": "infra:docker",
+      "target": "store:postgres",
+      "kind": "runs"
+    },
+    {
+      "source": "infra:docker",
+      "target": "store:redis",
+      "kind": "runs"
+    },
+    {
+      "source": "app:web",
+      "target": "app:api",
+      "kind": "http"
+    },
+    {
+      "source": "app:desktop",
+      "target": "app:api",
+      "kind": "http"
+    },
+    {
+      "source": "app:landing",
+      "target": "app:desktop",
+      "kind": "download"
+    },
+    {
+      "source": "app:api",
+      "target": "route:health",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:auth",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:analytics",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:fleet",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:ops",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:permit",
+      "kind": "routes"
+    },
+    {
+      "source": "app:api",
+      "target": "route:rosdor",
+      "kind": "routes"
+    },
+    {
+      "source": "route:fleet",
+      "target": "ext:wialon",
+      "kind": "integrates"
+    },
+    {
+      "source": "route:fleet",
+      "target": "ext:transmanager",
+      "kind": "integrates"
+    },
+    {
+      "source": "route:rosdor",
+      "target": "ext:rosdor",
+      "kind": "integrates"
+    },
+    {
+      "source": "route:rosdor",
+      "target": "ext:rosdor_parser",
+      "kind": "integrates"
+    },
+    {
+      "source": "agent:dispatch",
+      "target": "app:api",
+      "kind": "calls"
+    },
+    {
+      "source": "route:fleet",
+      "target": "agent:dispatch",
+      "kind": "related"
+    },
+    {
+      "source": "agent:fuel",
+      "target": "app:api",
+      "kind": "calls"
+    },
+    {
+      "source": "route:fleet",
+      "target": "agent:fuel",
+      "kind": "related"
+    },
+    {
+      "source": "agent:maintenance",
+      "target": "app:api",
+      "kind": "calls"
+    },
+    {
+      "source": "route:ops",
+      "target": "agent:maintenance",
+      "kind": "related"
+    },
+    {
+      "source": "agent:permit",
+      "target": "app:api",
+      "kind": "calls"
+    },
+    {
+      "source": "route:permit",
+      "target": "agent:permit",
+      "kind": "exposes"
+    },
+    {
+      "source": "agent:route",
+      "target": "app:api",
+      "kind": "calls"
+    },
+    {
+      "source": "route:ops",
+      "target": "agent:route",
+      "kind": "related"
+    },
+    {
+      "source": "agent:dispatch",
+      "target": "agent:shared",
+      "kind": "uses"
+    },
+    {
+      "source": "agent:fuel",
+      "target": "agent:shared",
+      "kind": "uses"
+    },
+    {
+      "source": "agent:maintenance",
+      "target": "agent:shared",
+      "kind": "uses"
+    },
+    {
+      "source": "agent:permit",
+      "target": "agent:shared",
+      "kind": "uses"
+    },
+    {
+      "source": "agent:route",
+      "target": "agent:shared",
+      "kind": "uses"
+    },
+    {
+      "source": "app:web",
+      "target": "page:login",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:signup",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:dashboard",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:dispatch",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:map",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:routes",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:fuel",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:maintenance",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:integrations",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:settings",
+      "kind": "renders"
+    },
+    {
+      "source": "app:web",
+      "target": "page:pilot",
+      "kind": "renders"
+    },
+    {
+      "source": "page:login",
+      "target": "route:auth",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:signup",
+      "target": "route:auth",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:dashboard",
+      "target": "route:analytics",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:dispatch",
+      "target": "route:fleet",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:map",
+      "target": "route:fleet",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:routes",
+      "target": "route:ops",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:fuel",
+      "target": "route:fleet",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:maintenance",
+      "target": "route:ops",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:integrations",
+      "target": "route:fleet",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:settings",
+      "target": "route:ops",
+      "kind": "fetch"
+    },
+    {
+      "source": "page:pilot",
+      "target": "route:permit",
+      "kind": "fetch"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:enums",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:fuel_alert",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:integration",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:maintenance_task",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:order",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:organization",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:permit_audit_log",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:permit_request",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:savings_entry",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:user",
+      "kind": "tables"
+    },
+    {
+      "source": "store:postgres",
+      "target": "model:vehicle",
+      "kind": "tables"
+    },
+    {
+      "source": "app:api",
+      "target": "service:analytics_service",
+      "kind": "implements"
+    },
+    {
+      "source": "route:analytics",
+      "target": "service:analytics_service",
+      "kind": "uses"
+    },
+    {
+      "source": "app:api",
+      "target": "service:auth_service",
+      "kind": "implements"
+    },
+    {
+      "source": "route:auth",
+      "target": "service:auth_service",
+      "kind": "uses"
+    },
+    {
+      "source": "app:api",
+      "target": "service:demo_telematics",
+      "kind": "implements"
+    },
+    {
+      "source": "app:api",
+      "target": "service:fleet_service",
+      "kind": "implements"
+    },
+    {
+      "source": "route:fleet",
+      "target": "service:fleet_service",
+      "kind": "uses"
+    },
+    {
+      "source": "app:api",
+      "target": "service:ops_service",
+      "kind": "implements"
+    },
+    {
+      "source": "route:ops",
+      "target": "service:ops_service",
+      "kind": "uses"
+    },
+    {
+      "source": "app:api",
+      "target": "service:permit_rules",
+      "kind": "implements"
+    },
+    {
+      "source": "app:api",
+      "target": "service:permit_service",
+      "kind": "implements"
+    },
+    {
+      "source": "route:permit",
+      "target": "service:permit_service",
+      "kind": "uses"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:fuel_alert",
+      "kind": "queries"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:order",
+      "kind": "queries"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:organization",
+      "kind": "queries"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:user",
+      "kind": "queries"
+    },
+    {
+      "source": "service:analytics_service",
+      "target": "model:vehicle",
+      "kind": "queries"
+    },
+    {
+      "source": "service:auth_service",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:auth_service",
+      "target": "model:organization",
+      "kind": "queries"
+    },
+    {
+      "source": "service:auth_service",
+      "target": "model:user",
+      "kind": "queries"
+    },
+    {
+      "source": "service:demo_telematics",
+      "target": "model:order",
+      "kind": "queries"
+    },
+    {
+      "source": "service:demo_telematics",
+      "target": "model:vehicle",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:fuel_alert",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:integration",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:order",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:organization",
+      "kind": "queries"
+    },
+    {
+      "source": "service:fleet_service",
+      "target": "model:vehicle",
+      "kind": "queries"
+    },
+    {
+      "source": "service:ops_service",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:ops_service",
+      "target": "model:order",
+      "kind": "queries"
+    },
+    {
+      "source": "service:ops_service",
+      "target": "model:organization",
+      "kind": "queries"
+    },
+    {
+      "source": "service:ops_service",
+      "target": "model:vehicle",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_rules",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:enums",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:order",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:organization",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:permit_request",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:user",
+      "kind": "queries"
+    },
+    {
+      "source": "service:permit_service",
+      "target": "model:vehicle",
+      "kind": "queries"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:analytics",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:api",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:auth",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:config",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:fleet",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:permit",
+      "kind": "shared"
+    },
+    {
+      "source": "app:web",
+      "target": "lib:query-keys",
+      "kind": "shared"
+    },
+    {
+      "source": "page:dashboard",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dashboard",
+      "target": "lib:api",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dashboard",
+      "target": "lib:analytics",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dashboard",
+      "target": "lib:query-keys",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dispatch",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dispatch",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:dispatch",
+      "target": "lib:query-keys",
+      "kind": "imports"
+    },
+    {
+      "source": "page:fuel",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:fuel",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:fuel",
+      "target": "lib:query-keys",
+      "kind": "imports"
+    },
+    {
+      "source": "page:integrations",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:integrations",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:login",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:login",
+      "target": "lib:api",
+      "kind": "imports"
+    },
+    {
+      "source": "page:login",
+      "target": "lib:config",
+      "kind": "imports"
+    },
+    {
+      "source": "page:maintenance",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:maintenance",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:map",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:map",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:pilot",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:pilot",
+      "target": "lib:permit",
+      "kind": "imports"
+    },
+    {
+      "source": "page:routes",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:routes",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:routes",
+      "target": "lib:query-keys",
+      "kind": "imports"
+    },
+    {
+      "source": "page:settings",
+      "target": "lib:auth",
+      "kind": "imports"
+    },
+    {
+      "source": "page:settings",
+      "target": "lib:fleet",
+      "kind": "imports"
+    },
+    {
+      "source": "page:settings",
+      "target": "lib:config",
+      "kind": "imports"
+    },
+    {
+      "source": "page:signup",
+      "target": "lib:auth",
+      "kind": "imports"
+    }
+  ]
+}

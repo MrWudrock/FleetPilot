@@ -22,9 +22,14 @@ if (-not $node) {
 Write-Host ">> Syncing wireframes + pitch-deck..." -ForegroundColor Cyan
 & "$PSScriptRoot\sync-assets.ps1"
 
-Write-Host ">> Building config.js..." -ForegroundColor Cyan
+Write-Host ">> Building config.js (fleetpilot.ru)..." -ForegroundColor Cyan
+$env:SITE_URL = "https://fleetpilot.ru"
+$env:SUPPORT_EMAIL = "hello@fleetpilot.ru"
 & $node generate-config.js
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+Write-Host ">> Linking Vercel project fleet-pilot..." -ForegroundColor Cyan
+& npx --yes vercel link --project fleet-pilot --yes 2>$null
 
 Write-Host ">> Checking Vercel auth..." -ForegroundColor Cyan
 $who = & npx --yes vercel whoami 2>&1
@@ -39,5 +44,5 @@ Write-Host ">> Deploying to production..." -ForegroundColor Cyan
 & npx --yes vercel --prod
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host ">> Done!" -ForegroundColor Green
+Write-Host ">> Done! Production: https://fleetpilot.ru" -ForegroundColor Green
 Write-Host "Set env in Vercel Dashboard: FORMSPREE_ID, FORM_SUBMIT_EMAIL, YANDEX_METRIKA_ID" -ForegroundColor Cyan

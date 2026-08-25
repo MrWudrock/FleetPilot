@@ -114,7 +114,7 @@
 | Sprint | **Sprint** | желательно |
 | External ID | *не импортировать* или custom field | опционально |
 | Component | **Component/s** | опционально |
-| Fix Version | **Fix version/s** | опционально |
+| ~~Fix Version~~ | **не импортировать** | см. DT001 ниже |
 
 **Важно про Epic Name:**
 
@@ -228,6 +228,17 @@
 ---
 
 ## Частые ошибки
+
+### DT001 — `Locale and date and time values don't match` + `MVP v1.0`
+
+**Причина:** колонка **Fix Version** со значением `MVP v1.0` была сопоставлена с **полем даты** (Due date, Start date и т.п.), а не с **Fix version/s**. Jira пытается прочитать `MVP v1.0` как дату и падает на всех 65 строках.
+
+**Решение (выберите одно):**
+
+1. **Рекомендуется:** используйте обновлённый CSV **без колонки Fix Version**  
+   `docs/fleet-ai/backlog-jira-import.csv` (уже исправлен)
+2. На экране **Map fields** → колонку Fix Version **не сопоставляйте** или сопоставьте только с **Fix version/s** (не с Date!)
+3. Сначала создайте версию в Jira: **Project settings → Versions → Create** → имя `MVP-1`, затем импортируйте без этой колонки и назначьте версию через Bulk change
 
 | Проблема | Что сделать |
 |----------|-------------|

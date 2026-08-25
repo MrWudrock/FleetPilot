@@ -1,0 +1,24 @@
+Name,Type,Segment,Fleet Size,Country/Region,Use Case Type,Pain Type,Tools currently used,Status,Confidence,Notes,Linked Features
+DIS-001 | Владельцы малых автопарков хотят видеть P&L по каждой машине,Hypothesis,Small Fleet,10,Russia,Rental / Carsharing,Cost control,Excel/Sheets;1C,Draft,0.7,"Прозрачная экономика по машине — ключ к подписке.",BL-004;BL-007
+DIS-002 | Операторы 30-50 машин теряют деньги из-за простоя,Hypothesis,Growing Fleet,40,Russia,Delivery / Courier,Visibility,Excel/Sheets;Phone tracking,In progress,0.8,"Utilization dashboard повысит готовность платить.",BL-005;BL-001
+DIS-003 | Wialon Local без VPN блокирует пилот,Hypothesis,Pilot 6 TC,6,Russia,Delivery / Courier,Visibility,Wialon Local;Excel,Draft,0.5,"VPN за 1 нед — OK; иначе sync-agent.",BL-009;BL-101;BL-102
+DIS-004 | ТрансМенеджер без REST замедлит интеграцию,Hypothesis,Pilot 6 TC,6,Russia,Delivery / Courier,Visibility,TransManager;Excel,In progress,0.6,"Проверить ODBC/XML fallback 15 min.",BL-201;BL-202
+DIS-005 | Permit Agent -50% время на спецразрешение,Hypothesis,Негабарит,6,Russia,Service fleet,Route optimization,RosdorMonitoring;TransManager,In progress,0.85,"Успех: -40% на 5 маршрутах.",BL-301;BL-302;BL-303;BL-305
+DIS-006 | Fuel алерты окупают пилот на 6 ТС,Hypothesis,Pilot 6 TC,6,Russia,Delivery / Courier,Cost control,Wialon;Excel,Draft,0.65,"Нужны датчики топлива в Wialon.",BL-006;BL-501
+DIS-007 | Диспетчер примет suggest без auto-assign,Hypothesis,Pilot 6 TC,6,Russia,Delivery / Courier,Visibility,TransManager,Draft,0.8,"HITL обязателен; метрика accept rate.",BL-502
+DIS-008 | Интервью #2 — специалист негабарита,Interview,Негабарит,6,Russia,Service fleet,Route optimization,RosdorMonitoring,Draft,0.85,"5 исторических маршрутов; типовые габариты.",BL-304;BL-305;BL-503
+DIS-009 | CSV 1С достаточно для пилота,Hypothesis,Pilot 6 TC,6,Russia,Service fleet,Cost control,1C;Excel,Draft,0.75,"API 1С — фаза 2.",BL-401;BL-010
+DIS-010 | Insight: 152-ФЗ блокер без договора,Insight,IT/LPR,6,Russia,All,Cost control,1C,Validated,0.95,"Договор ПДн до доступа к Wialon.",BL-702
+DIS-011 | Competitor: аутсорс разрешений,Competitor,Негабарит,,Russia,Service fleet,Route optimization,RosdorMonitoring,Validated,0.7,"Сравнить ₽/маршрут vs FleetPilot Permit.",BL-305;BL-802
+DIS-012 | Experiment: 6-нед пилот WAU диспетчеров,Experiment,Pilot 6 TC,6,Russia,Delivery / Courier,Visibility,All pilot stack,In progress,0.85,"Успех: 2/2 WAU 4 нед; 70% заявок.",BL-701;BL-704;BL-020
+DIS-101 | Интервью #1 — владелец каршеринга (15 машин),Interview,Small Fleet,15,Russia,Rental / Carsharing,Visibility,Excel;Basic telematics,Validated,0.9,"Хочет видеть какие машины работают. P&L важен.",BL-004;BL-005
+DIS-102 | Интервью #2 — служба доставки (35 машин),Interview,Growing Fleet,35,Russia,Delivery / Courier,Cost control,Wialon;Excel,Validated,0.85,"Топливо и холостой ход — готов платить.",BL-006;BL-003;BL-501
+DIS-103 | Интервью #3 — сервисная компания (60 машин),Interview,Pro Fleet,60,Russia,Service fleet,Cost control,Omnicomm;1C,Validated,0.8,"Единая панель телематика + финансы.",BL-009;BL-010;BL-110
+DIS-104 | Интервью #1 пилот — ЛПР и диспетчер (6 ТС),Interview,Pilot 6 TC,6,Russia,Delivery / Courier,Visibility,Wialon Local;TransManager;1C,In progress,0.9,"Baseline: мин/заявка, ч/разрешение.",BL-701;BL-601;BL-020
+DIS-105 | Insight: расход топлива — главная боль LCV/грузовых,Insight,Growing Fleet,35,Russia,Delivery / Courier,Cost control,Wialon,Validated,0.85,"Fuel Agent — quick win для сегмента.",BL-006;BL-501;BL-003
+DIS-106 | Insight: P&L важнее сложных отчётов,Insight,Small Fleet;Growing Fleet,20,Russia,Rental / Carsharing,Visibility,Excel;Google Sheets,Validated,0.9,"Простые дашборды; избегать перегруженных таблиц.",BL-004;BL-005;BL-020
+DIS-107 | Insight: utilization = скрытые потери,Insight,Growing Fleet,40,Russia,Delivery / Courier,Visibility,Excel,Validated,0.85,"Дни без использования — аргумент для продажи Pro.",BL-005
+DIS-108 | Insight: «как встроится в наш учёт?» — ключевое возражение,Insight,Pro Fleet;Enterprise,100,Russia,Service fleet,Cost control,1C;ERP,Validated,0.85,"Без ответа сложно продать Pro/Enterprise.",BL-010;BL-401;BL-007
+DIS-109 | Competitor X: трекинг без финансов,Competitor,All,,Russia,All,Cost control;Visibility,Wialon;Navigation systems,Validated,0.9,"Дифференциация через P&L и простоту.",BL-004;BL-005
+DIS-110 | Competitor Y: дорогой Enterprise низкая прозрачность тарифов,Competitor,Pro Fleet;Enterprise,,Russia,All,Cost control,Own telematics;ERP,Validated,0.8,"Выигрыш: понятные тарифы для 5-200 ТС.",BL-007;BL-008
+DIS-111 | Гипотеза: Pro Fleet платит за интеграцию с 1С,Hypothesis,Pro Fleet,80,Russia,Service fleet,Cost control,1C;ERP,Draft,0.6,"Конверсия в Pro/Enterprise при API 1С.",BL-010;BL-402;BL-008

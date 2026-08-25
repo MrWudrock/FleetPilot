@@ -1,69 +1,69 @@
-Summary,Issue Type,Description,Priority,Labels,Story Points,Epic Name,Sprint,External ID,Component,Fix Version
-EP-1 Platform & Auth,Epic,"Repo, CI, auth, RBAC, fleet dashboard. Exit: user sees empty fleet dashboard.",High,mvp epic,18,,,EP-1,Platform,MVP v1.0
-FP-1 Monorepo setup,Task,"Next.js + FastAPI + Docker Compose. AC: docker compose up works.",High,"mvp p0 infra",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-1,Platform,MVP v1.0
-FP-2 PostgreSQL schema v1,Task,"Organization, User, Vehicle, Integration + migrations.",High,"mvp p0 backend",5,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-2,Platform,MVP v1.0
-FP-3 Auth signup/login,Story,"JWT auth, org invite flow.",High,"mvp p0 backend frontend",5,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-3,Platform,MVP v1.0
-FP-4 RBAC roles,Story,"Admin, Dispatcher, FleetManager, Driver, Viewer.",High,"mvp p0 backend",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-4,Platform,MVP v1.0
-FP-5 App shell ROI dashboard,Story,"Sidebar nav, KPI cards from wireframes.",High,"mvp p0 frontend design",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-5,Platform,MVP v1.0
-FP-6 CI GitHub Actions,Task,"Lint, test, Docker build on PR.",High,"mvp p0 infra",2,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-6,Platform,MVP v1.0
-FP-7 Dev README seed script,Task,"Local setup + demo fleet 32 vehicles.",Medium,"mvp p1 infra",1,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-7,Platform,MVP v1.0
-FP-8 Sentry env config,Task,"Error tracking + .env.example.",Medium,"mvp p1 infra",2,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-8,Platform,MVP v1.0
-EP-2 Integration Hub,Epic,"Omnicomm, StavTrack adapters, vehicle mapping. Exit: 28+ vehicles synced.",High,mvp epic,32,,,EP-2,Integrations,MVP v1.0
-FP-10 Integration model,Task,"Provider, encrypted credentials, health.",High,"mvp p0 backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-10,Integrations,MVP v1.0
-FP-11 Omnicomm adapter,Story,"REST API GPS + fuel polling.",High,"mvp p0 integrations backend",8,EP-2 Integration Hub,Sprint 2 — Integrations,FP-11,Integrations,MVP v1.0
-FP-12 StavTrack adapter,Story,"REST API GPS sync.",High,"mvp p0 integrations backend",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-12,Integrations,MVP v1.0
-FP-13 Unified Vehicle Model,Story,"external_ids mapping UI.",High,"mvp p0 backend frontend",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-13,Integrations,MVP v1.0
-FP-14 Celery sync workers,Task,"30 sec polling interval.",High,"mvp p0 infra backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-14,Integrations,MVP v1.0
-FP-15 Integration Hub UI,Story,"Connect, status, force sync.",High,"mvp p0 frontend design",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-15,Integrations,MVP v1.0
-FP-16 Credentials vault,Task,"AES-256 encrypted at rest.",High,"mvp p0 backend infra",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-16,Integrations,MVP v1.0
-FP-17 Integration health API,Story,"Alert on sync failure.",Medium,"mvp p1 backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-17,Integrations,MVP v1.0
-FP-18 MSS GLONASS adapter stub,Story,"Stub + integration docs.",Medium,"mvp p1 integrations",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-18,Integrations,MVP v1.0
-EP-3 Fleet Map & Telemetry,Epic,"Real-time map, deviation alerts. Exit: live map + test alert.",High,mvp epic,24,,,EP-3,Fleet Map,MVP v1.0
-FP-20 TimescaleDB telemetry,Task,"Hypertable vehicle_telemetry.",High,"mvp p0 backend infra",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-20,Fleet Map,MVP v1.0
-FP-21 Fleet map SSE API,Story,"Real-time positions stream.",High,"mvp p0 backend",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-21,Fleet Map,MVP v1.0
-FP-22 MapLibre map UI,Story,"Markers, clusters, popups.",High,"mvp p0 frontend design",8,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-22,Fleet Map,MVP v1.0
-FP-23 Vehicle list filters,Story,"Status, source, driver filters.",High,"mvp p0 frontend",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-23,Fleet Map,MVP v1.0
-FP-24 Route deviation detection,Story,"Geo-fence vs planned route.",High,"mvp p0 backend ai",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-24,Fleet Map,MVP v1.0
-FP-25 Alert engine v1,Story,"Types, severity, notifications.",High,"mvp p0 backend",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-25,Fleet Map,MVP v1.0
-FP-26 Alerts inbox UI,Story,"Acknowledge workflow.",High,"mvp p0 frontend design",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-26,Fleet Map,MVP v1.0
-FP-27 Driver working time report,Story,"GPS-based hours report.",Medium,"mvp p1 backend",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-27,Fleet Map,MVP v1.0
-FP-28 Offline vehicle badge,Task,"Stale data detection.",Medium,"mvp p1 backend",2,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-28,Fleet Map,MVP v1.0
-EP-4 Fuel Agent,Epic,"Fuel dashboard, drain detection. Exit: alert in under 2 min.",High,mvp epic,22,,,EP-4,Fuel Agent,MVP v1.0
-FP-30 Fuel baseline model,Story,"l/100km per vehicle baseline.",High,"mvp p0 ai backend",5,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-30,Fuel Agent,MVP v1.0
-FP-31 Fuel anomaly detection,Story,"Sudden drop, off-route refuel.",High,"mvp p0 ai backend",8,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-31,Fuel Agent,MVP v1.0
-FP-32 Confidence gating,Story,">=0.85 auto-alert else review.",High,"mvp p0 ai backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-32,Fuel Agent,MVP v1.0
-FP-33 Fuel Agent dashboard UI,Story,"KPI cards, charts.",High,"mvp p0 frontend design",5,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-33,Fuel Agent,MVP v1.0
-FP-34 Drain events workflow,Story,"Investigate table + actions.",High,"mvp p0 frontend backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-34,Fuel Agent,MVP v1.0
-FP-35 Driver fuel rating,Story,"Leaderboard UI.",High,"mvp p0 frontend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-35,Fuel Agent,MVP v1.0
-FP-36 Monthly fuel report PDF,Story,"Savings export.",Medium,"mvp p1 backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-36,Fuel Agent,MVP v1.0
-FP-37 Langfuse Fuel Agent,Task,"Anomaly observability.",Medium,"mvp p1 ai infra",2,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-37,Fuel Agent,MVP v1.0
-EP-5 Route Agent,Epic,"VRP optimization, approval flow. Exit: 5-stop route optimized.",High,mvp epic,20,,,EP-5,Route Agent,MVP v1.0
-FP-40 Yandex Maps Routing,Story,"Traffic-aware routing API.",High,"mvp p0 integrations backend",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-40,Route Agent,MVP v1.0
-FP-41 OR-Tools VRP solver,Story,"Multi-stop route optimization.",High,"mvp p0 ai backend",8,EP-5 Route Agent,Sprint 5 — Route Agent,FP-41,Route Agent,MVP v1.0
-FP-42 Route comparison UI,Story,"Manual vs optimized side-by-side.",High,"mvp p0 frontend design",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-42,Route Agent,MVP v1.0
-FP-43 Route approval flow,Story,"Push to driver/TMS after approve.",High,"mvp p0 backend frontend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-43,Route Agent,MVP v1.0
-FP-44 LLM route explanation,Story,"Natural language reasoning.",Medium,"mvp p1 ai backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-44,Route Agent,MVP v1.0
-FP-45 Route constraints,Story,"Time windows, capacity, ADR.",Medium,"mvp p1 backend",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-45,Route Agent,MVP v1.0
-FP-46 Route savings audit log,Story,"History + ROI per route.",High,"mvp p0 backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-46,Route Agent,MVP v1.0
-FP-47 Traffic weather hook,Story,"Yandex traffic integration.",Medium,"mvp p1 backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-47,Route Agent,MVP v1.0
-EP-6 Dispatch Agent,Epic,"Order intake, top-3 assignment. Exit: dispatch demo end-to-end.",High,mvp epic,20,,,EP-6,Dispatch,MVP v1.0
-FP-50 Dispatch order parse,Story,"Email/Excel/API intake.",High,"mvp p0 ai backend",8,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-50,Dispatch,MVP v1.0
-FP-51 Dispatch classify assign,Story,"FTL/LTL + top-3 proposals.",High,"mvp p0 ai backend",5,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-51,Dispatch,MVP v1.0
-FP-52 Dispatch UI,Story,"Approve/reject proposals.",High,"mvp p0 frontend design",5,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-52,Dispatch,MVP v1.0
-EP-7 Maintenance Agent,Epic,"Predictive maintenance schedule.",High,mvp epic,12,,,EP-7,Maintenance,MVP v1.0
-FP-53 Maintenance rules CAN,Story,"Interval + DTC analysis.",High,"mvp p0 ai backend",5,EP-7 Maintenance Agent,Sprint 6 — Launch,FP-53,Maintenance,MVP v1.0
-FP-54 Maintenance schedule UI,Story,"14-day forecast view.",High,"mvp p0 frontend",3,EP-7 Maintenance Agent,Sprint 6 — Launch,FP-54,Maintenance,MVP v1.0
-EP-8 ROI & Analytics,Epic,"Savings dashboard, NPV calculator.",High,mvp epic,14,,,EP-8,Analytics,MVP v1.0
-FP-55 ROI dashboard,Story,"Savings by agent, NPV calc.",High,"mvp p0 backend frontend",5,EP-8 ROI & Analytics,Sprint 6 — Launch,FP-55,Analytics,MVP v1.0
-EP-9 Billing & GTM,Epic,"Payments, onboarding, Vercel landing.",High,mvp epic,14,,,EP-9,Billing,MVP v1.0
-FP-56 Master TMS adapter,Story,"Bidirectional order sync.",Medium,"mvp p1 integrations",5,EP-9 Billing & GTM,Sprint 6 — Launch,FP-56,Billing,MVP v1.0
-FP-57 YooKassa billing,Story,"Checkout + vehicle metering.",High,"mvp p0 backend",5,EP-9 Billing & GTM,Sprint 6 — Launch,FP-57,Billing,MVP v1.0
-FP-58 Billing UI,Story,"Plan, usage, upgrade.",Medium,"mvp p1 frontend",3,EP-9 Billing & GTM,Sprint 6 — Launch,FP-58,Billing,MVP v1.0
-FP-59 Onboarding wizard,Story,"GPS connect to vehicle map flow.",Medium,"mvp p1 frontend design",3,EP-9 Billing & GTM,Sprint 6 — Launch,FP-59,Billing,MVP v1.0
-FP-65 Landing Vercel GTM,Task,"Production landing + pitch deck deploy.",Medium,"mvp p1 infra",2,EP-9 Billing & GTM,Sprint 6 — Launch,FP-65,Billing,MVP v1.0
-EP-10 Observability & Launch,Epic,"E2E, security, production deploy.",High,mvp epic,12,,,EP-10,Infra,MVP v1.0
-FP-60 E2E tests,Task,"Omnicomm to fuel alert to ROI flow.",High,"mvp p0 infra",5,EP-10 Observability & Launch,Sprint 6 — Launch,FP-60,Infra,MVP v1.0
-FP-61 Production deploy,Task,"Yandex Cloud + runbook.",High,"mvp p0 infra",5,EP-10 Observability & Launch,Sprint 6 — Launch,FP-61,Infra,MVP v1.0
-FP-62 Founding admin override,Task,"Manual plan for pilot customers.",Medium,"mvp p1 backend",2,EP-10 Observability & Launch,Sprint 6 — Launch,FP-62,Infra,MVP v1.0
-FP-63 LLM cost cap,Task,"Rate limit per org.",High,"mvp p0 backend infra",3,EP-10 Observability & Launch,Sprint 6 — Launch,FP-63,Infra,MVP v1.0
-FP-64 Security review 152-FZ,Task,"RLS, credentials audit checklist.",High,"mvp p0 infra",3,EP-10 Observability & Launch,Sprint 6 — Launch,FP-64,Infra,MVP v1.0
+Summary,Issue Type,Description,Priority,Labels,Story Points,Epic Name,Sprint,External ID,Component
+EP-1 Platform & Auth,Epic,"Repo, CI, auth, RBAC, fleet dashboard. Exit: user sees empty fleet dashboard.",High,mvp epic,18,,,EP-1,Platform
+FP-1 Monorepo setup,Task,"Next.js + FastAPI + Docker Compose. AC: docker compose up works.",High,"mvp p0 infra",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-1,Platform
+FP-2 PostgreSQL schema v1,Task,"Organization, User, Vehicle, Integration + migrations.",High,"mvp p0 backend",5,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-2,Platform
+FP-3 Auth signup/login,Story,"JWT auth, org invite flow.",High,"mvp p0 backend frontend",5,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-3,Platform
+FP-4 RBAC roles,Story,"Admin, Dispatcher, FleetManager, Driver, Viewer.",High,"mvp p0 backend",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-4,Platform
+FP-5 App shell ROI dashboard,Story,"Sidebar nav, KPI cards from wireframes.",High,"mvp p0 frontend design",3,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-5,Platform
+FP-6 CI GitHub Actions,Task,"Lint, test, Docker build on PR.",High,"mvp p0 infra",2,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-6,Platform
+FP-7 Dev README seed script,Task,"Local setup + demo fleet 32 vehicles.",Medium,"mvp p1 infra",1,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-7,Platform
+FP-8 Sentry env config,Task,"Error tracking + .env.example.",Medium,"mvp p1 infra",2,EP-1 Platform & Auth,Sprint 1 — Foundation,FP-8,Platform
+EP-2 Integration Hub,Epic,"Omnicomm, StavTrack adapters, vehicle mapping. Exit: 28+ vehicles synced.",High,mvp epic,32,,,EP-2,Integrations
+FP-10 Integration model,Task,"Provider, encrypted credentials, health.",High,"mvp p0 backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-10,Integrations
+FP-11 Omnicomm adapter,Story,"REST API GPS + fuel polling.",High,"mvp p0 integrations backend",8,EP-2 Integration Hub,Sprint 2 — Integrations,FP-11,Integrations
+FP-12 StavTrack adapter,Story,"REST API GPS sync.",High,"mvp p0 integrations backend",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-12,Integrations
+FP-13 Unified Vehicle Model,Story,"external_ids mapping UI.",High,"mvp p0 backend frontend",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-13,Integrations
+FP-14 Celery sync workers,Task,"30 sec polling interval.",High,"mvp p0 infra backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-14,Integrations
+FP-15 Integration Hub UI,Story,"Connect, status, force sync.",High,"mvp p0 frontend design",5,EP-2 Integration Hub,Sprint 2 — Integrations,FP-15,Integrations
+FP-16 Credentials vault,Task,"AES-256 encrypted at rest.",High,"mvp p0 backend infra",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-16,Integrations
+FP-17 Integration health API,Story,"Alert on sync failure.",Medium,"mvp p1 backend",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-17,Integrations
+FP-18 MSS GLONASS adapter stub,Story,"Stub + integration docs.",Medium,"mvp p1 integrations",3,EP-2 Integration Hub,Sprint 2 — Integrations,FP-18,Integrations
+EP-3 Fleet Map & Telemetry,Epic,"Real-time map, deviation alerts. Exit: live map + test alert.",High,mvp epic,24,,,EP-3,Fleet Map
+FP-20 TimescaleDB telemetry,Task,"Hypertable vehicle_telemetry.",High,"mvp p0 backend infra",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-20,Fleet Map
+FP-21 Fleet map SSE API,Story,"Real-time positions stream.",High,"mvp p0 backend",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-21,Fleet Map
+FP-22 MapLibre map UI,Story,"Markers, clusters, popups.",High,"mvp p0 frontend design",8,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-22,Fleet Map
+FP-23 Vehicle list filters,Story,"Status, source, driver filters.",High,"mvp p0 frontend",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-23,Fleet Map
+FP-24 Route deviation detection,Story,"Geo-fence vs planned route.",High,"mvp p0 backend ai",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-24,Fleet Map
+FP-25 Alert engine v1,Story,"Types, severity, notifications.",High,"mvp p0 backend",5,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-25,Fleet Map
+FP-26 Alerts inbox UI,Story,"Acknowledge workflow.",High,"mvp p0 frontend design",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-26,Fleet Map
+FP-27 Driver working time report,Story,"GPS-based hours report.",Medium,"mvp p1 backend",3,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-27,Fleet Map
+FP-28 Offline vehicle badge,Task,"Stale data detection.",Medium,"mvp p1 backend",2,EP-3 Fleet Map & Telemetry,Sprint 3 — Fleet Map,FP-28,Fleet Map
+EP-4 Fuel Agent,Epic,"Fuel dashboard, drain detection. Exit: alert in under 2 min.",High,mvp epic,22,,,EP-4,Fuel Agent
+FP-30 Fuel baseline model,Story,"l/100km per vehicle baseline.",High,"mvp p0 ai backend",5,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-30,Fuel Agent
+FP-31 Fuel anomaly detection,Story,"Sudden drop, off-route refuel.",High,"mvp p0 ai backend",8,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-31,Fuel Agent
+FP-32 Confidence gating,Story,">=0.85 auto-alert else review.",High,"mvp p0 ai backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-32,Fuel Agent
+FP-33 Fuel Agent dashboard UI,Story,"KPI cards, charts.",High,"mvp p0 frontend design",5,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-33,Fuel Agent
+FP-34 Drain events workflow,Story,"Investigate table + actions.",High,"mvp p0 frontend backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-34,Fuel Agent
+FP-35 Driver fuel rating,Story,"Leaderboard UI.",High,"mvp p0 frontend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-35,Fuel Agent
+FP-36 Monthly fuel report PDF,Story,"Savings export.",Medium,"mvp p1 backend",3,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-36,Fuel Agent
+FP-37 Langfuse Fuel Agent,Task,"Anomaly observability.",Medium,"mvp p1 ai infra",2,EP-4 Fuel Agent,Sprint 4 — Fuel Agent,FP-37,Fuel Agent
+EP-5 Route Agent,Epic,"VRP optimization, approval flow. Exit: 5-stop route optimized.",High,mvp epic,20,,,EP-5,Route Agent
+FP-40 Yandex Maps Routing,Story,"Traffic-aware routing API.",High,"mvp p0 integrations backend",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-40,Route Agent
+FP-41 OR-Tools VRP solver,Story,"Multi-stop route optimization.",High,"mvp p0 ai backend",8,EP-5 Route Agent,Sprint 5 — Route Agent,FP-41,Route Agent
+FP-42 Route comparison UI,Story,"Manual vs optimized side-by-side.",High,"mvp p0 frontend design",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-42,Route Agent
+FP-43 Route approval flow,Story,"Push to driver/TMS after approve.",High,"mvp p0 backend frontend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-43,Route Agent
+FP-44 LLM route explanation,Story,"Natural language reasoning.",Medium,"mvp p1 ai backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-44,Route Agent
+FP-45 Route constraints,Story,"Time windows, capacity, ADR.",Medium,"mvp p1 backend",5,EP-5 Route Agent,Sprint 5 — Route Agent,FP-45,Route Agent
+FP-46 Route savings audit log,Story,"History + ROI per route.",High,"mvp p0 backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-46,Route Agent
+FP-47 Traffic weather hook,Story,"Yandex traffic integration.",Medium,"mvp p1 backend",3,EP-5 Route Agent,Sprint 5 — Route Agent,FP-47,Route Agent
+EP-6 Dispatch Agent,Epic,"Order intake, top-3 assignment. Exit: dispatch demo end-to-end.",High,mvp epic,20,,,EP-6,Dispatch
+FP-50 Dispatch order parse,Story,"Email/Excel/API intake.",High,"mvp p0 ai backend",8,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-50,Dispatch
+FP-51 Dispatch classify assign,Story,"FTL/LTL + top-3 proposals.",High,"mvp p0 ai backend",5,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-51,Dispatch
+FP-52 Dispatch UI,Story,"Approve/reject proposals.",High,"mvp p0 frontend design",5,EP-6 Dispatch Agent,Sprint 6 — Launch,FP-52,Dispatch
+EP-7 Maintenance Agent,Epic,"Predictive maintenance schedule.",High,mvp epic,12,,,EP-7,Maintenance
+FP-53 Maintenance rules CAN,Story,"Interval + DTC analysis.",High,"mvp p0 ai backend",5,EP-7 Maintenance Agent,Sprint 6 — Launch,FP-53,Maintenance
+FP-54 Maintenance schedule UI,Story,"14-day forecast view.",High,"mvp p0 frontend",3,EP-7 Maintenance Agent,Sprint 6 — Launch,FP-54,Maintenance
+EP-8 ROI & Analytics,Epic,"Savings dashboard, NPV calculator.",High,mvp epic,14,,,EP-8,Analytics
+FP-55 ROI dashboard,Story,"Savings by agent, NPV calc.",High,"mvp p0 backend frontend",5,EP-8 ROI & Analytics,Sprint 6 — Launch,FP-55,Analytics
+EP-9 Billing & GTM,Epic,"Payments, onboarding, Vercel landing.",High,mvp epic,14,,,EP-9,Billing
+FP-56 Master TMS adapter,Story,"Bidirectional order sync.",Medium,"mvp p1 integrations",5,EP-9 Billing & GTM,Sprint 6 — Launch,FP-56,Billing
+FP-57 YooKassa billing,Story,"Checkout + vehicle metering.",High,"mvp p0 backend",5,EP-9 Billing & GTM,Sprint 6 — Launch,FP-57,Billing
+FP-58 Billing UI,Story,"Plan, usage, upgrade.",Medium,"mvp p1 frontend",3,EP-9 Billing & GTM,Sprint 6 — Launch,FP-58,Billing
+FP-59 Onboarding wizard,Story,"GPS connect to vehicle map flow.",Medium,"mvp p1 frontend design",3,EP-9 Billing & GTM,Sprint 6 — Launch,FP-59,Billing
+FP-65 Landing Vercel GTM,Task,"Production landing + pitch deck deploy.",Medium,"mvp p1 infra",2,EP-9 Billing & GTM,Sprint 6 — Launch,FP-65,Billing
+EP-10 Observability & Launch,Epic,"E2E, security, production deploy.",High,mvp epic,12,,,EP-10,Infra
+FP-60 E2E tests,Task,"Omnicomm to fuel alert to ROI flow.",High,"mvp p0 infra",5,EP-10 Observability & Launch,Sprint 6 — Launch,FP-60,Infra
+FP-61 Production deploy,Task,"Yandex Cloud + runbook.",High,"mvp p0 infra",5,EP-10 Observability & Launch,Sprint 6 — Launch,FP-61,Infra
+FP-62 Founding admin override,Task,"Manual plan for pilot customers.",Medium,"mvp p1 backend",2,EP-10 Observability & Launch,Sprint 6 — Launch,FP-62,Infra
+FP-63 LLM cost cap,Task,"Rate limit per org.",High,"mvp p0 backend infra",3,EP-10 Observability & Launch,Sprint 6 — Launch,FP-63,Infra
+FP-64 Security review 152-FZ,Task,"RLS, credentials audit checklist.",High,"mvp p0 infra",3,EP-10 Observability & Launch,Sprint 6 — Launch,FP-64,Infra

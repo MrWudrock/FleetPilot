@@ -1,0 +1,30 @@
+agent:
+  name: permit-agent
+  version: "0.1.0"
+  description: "Спецразрешения негабарит · Росдормониторинг"
+
+thresholds:
+  # Нормы без разрешения (м)
+  max_width_m: 2.55
+  max_height_m: 4.0
+  max_length_m: 12.0
+
+integrations:
+  rosdor:
+    registry_url: "https://urd.safe-route.ru"
+    lk_url: "https://urm.safe-route.ru"
+    parser_api_enabled: false
+    playwright_lk_enabled: false
+
+llm:
+  cascade:
+    default: "yandexgpt"
+    legal: "gigachat-pro"
+    complex: "claude-sonnet"
+  rag:
+    legal_docs_path: "./legal_docs"
+    top_k: 5
+
+human_in_the_loop:
+  require_approval_before_submit: true
+  min_confidence_auto_draft: 0.85

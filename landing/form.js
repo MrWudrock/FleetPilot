@@ -1,6 +1,6 @@
 (function () {
   var cfg = window.FLEETPILOT_CONFIG || {};
-  var SUPPORT_EMAIL = 'hello@fleetpilot.ru';
+  var SUPPORT_EMAIL = cfg.supportEmail || 'hello@fleetpilot.ru';
 
   function hasFormSubmitEmail() {
     return cfg.formSubmitEmail && String(cfg.formSubmitEmail).indexOf('@') > 0;
@@ -28,13 +28,50 @@
     el.classList.remove('hidden');
   }
 
+  function formatPhone(value) {
+    var digits = value.replace(/\D/g, '');
+    if (digits.length === 0) return '';
+    if (digits[0] === '7' || digits[0] === '8') {
+      var formatted = '+7';
+      if (digits.length > 1) formatted += ' (' + digits.slice(1, 4);
+      if (digits.length > 4) formatted += ') ' + digits.slice(4, 7);
+      if (digits.length > 7) formatted += '-' + digits.slice(7, 9);
+      if (digits.length > 9) formatted += '-' + digits.slice(9, 11);
+      return formatted;
+    }
+    return '+' + digits;
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('lead-form');
     var messageEl = document.getElementById('form-message');
     if (!form || !messageEl) return;
 
+    var phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function () {
+        var cursorPos = this.selectionStart;
+        var oldLen = this.value.length;
+        this.value = formatPhone(this.value);
+        var newLen = this.value.length;
+        this.setSelectionRange(cursorPos + (newLen - oldLen), cursorPos + (newLen - oldLen));
+      });
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      messageEl.classList.add('hidden');
+
+      var email = form.querySelector('input[name="email"]');
+      if (email && !validateEmail(email.value)) {
+        showMessage(messageEl, 'error', 'Введите корректный email');
+        return;
+      }
+
       var intent = form.dataset.intent || 'pilot';
       var endpoint = getFormEndpoint(intent);
       if (!endpoint) {
@@ -51,6 +88,7 @@
       formData.append('_subject', '[FleetPilot] ' + (intent === 'founding' ? 'Founding slot' : 'Pilot request'));
       formData.append('intent', intent);
       formData.append('page_url', window.location.href);
+      formData.append('submitted_at', new Date().toISOString());
       if (endpoint.provider === 'formsubmit') {
         formData.append('_captcha', 'false');
         formData.append('_template', 'table');

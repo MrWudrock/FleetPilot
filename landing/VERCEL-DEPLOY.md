@@ -33,17 +33,19 @@ cd "C:\Users\Wu\develop\startapp log\landing"
 
 | Variable | Пример | Назначение |
 |----------|--------|------------|
+| `SITE_URL` | `https://fleetpilot.ru` | Canonical URL |
+| `SUPPORT_EMAIL` | `hello@fleetpilot.ru` | Email поддержки |
 | `FORMSPREE_ID` | `xyzabc` | Formspree для формы |
-| `FORM_SUBMIT_EMAIL` | `leads@domain.ru` | FormSubmit (альтернатива) |
+| `FORM_SUBMIT_EMAIL` | `hello@fleetpilot.ru` | FormSubmit |
 | `YANDEX_METRIKA_ID` | `12345678` | Яндекс.Метрика |
 | `GA4_MEASUREMENT_ID` | `G-XXXXXXXX` | Google Analytics 4 |
 
 8. Deploy
 
 **URLs после деплоя:**
-- `/` — landing
-- `/wireframes` — прототип MVP
-- `/pitch-deck` — pitch deck
+- https://fleetpilot.ru/ — landing
+- https://fleetpilot.ru/wireframes — прототип MVP
+- https://fleetpilot.ru/pitch-deck — pitch deck
 
 ---
 
@@ -60,7 +62,7 @@ cd "C:\Users\Wu\develop\startapp log\landing"
 - **Project name:** `fleetpilot-landing`
 - **Directory:** `./`
 
-Production URL: `https://fleetpilot-landing.vercel.app`
+Production URL: `https://fleetpilot.ru` (после привязки домена) или `https://fleetpilot-landing.vercel.app`
 
 ---
 
@@ -74,7 +76,7 @@ Production URL: `https://fleetpilot-landing.vercel.app`
 
 ## Проверка после деплоя
 
-- [ ] Главная открывается по HTTPS
+- [ ] https://fleetpilot.ru открывается по HTTPS
 - [ ] `/wireframes` — 10 экранов MVP
 - [ ] `/pitch-deck` — навигация стрелками
 - [ ] Форма ROI отправляется (Formspree / FormSubmit inbox)
@@ -82,9 +84,18 @@ Production URL: `https://fleetpilot-landing.vercel.app`
 
 ---
 
-## Кастомный домен
+## Кастомный домен — fleetpilot.ru
 
-Vercel → Project → Settings → Domains → Add `fleetpilot.ru`
+**Полная инструкция:** [`DOMAIN.md`](DOMAIN.md)
+
+1. Vercel → Project → **Settings** → **Domains** → Add `fleetpilot.ru` и `www.fleetpilot.ru`
+2. DNS у регистратора:
+   - **A** `@` → `76.76.21.21`
+   - **CNAME** `www` → `cname.vercel-dns.com`
+3. Env: `SITE_URL=https://fleetpilot.ru`, `SUPPORT_EMAIL=hello@fleetpilot.ru`
+4. Redeploy
+
+Production: **https://fleetpilot.ru**
 
 ---
 

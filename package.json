@@ -1,0 +1,14 @@
+{
+  "name": "fleetpilot",
+  "private": true,
+  "description": "FleetPilot monorepo — run scripts from repo root",
+  "scripts": {
+    "dev": "npm run dev --prefix apps/web",
+    "dev:web": "npm run dev --prefix apps/web",
+    "build:web": "npm run build --prefix apps/web",
+    "start:web": "npm run start --prefix apps/web",
+    "lint:web": "npm run lint --prefix apps/web",
+    "scan": "python scan/build_graph.py",
+    "scan:serve": "powershell -NoProfile -ExecutionPolicy Bypass -File scan/serve.ps1"
+  }
+}

@@ -4,10 +4,20 @@
   "outputDirectory": ".",
   "installCommand": "",
   "framework": null,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.fleetpilot.ru" }],
+      "destination": "https://fleetpilot.ru/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/wireframes", "destination": "/wireframes/index.html" },
     { "source": "/pitch-deck", "destination": "/pitch-deck.html" },
-    { "source": "/deck", "destination": "/pitch-deck.html" }
+    { "source": "/deck", "destination": "/pitch-deck.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" }
   ],
   "headers": [
     {

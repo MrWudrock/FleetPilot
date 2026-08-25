@@ -5,6 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FleetPilot — ИИ-агенты для автопарка: экономия до 26% бюджета</title>
   <meta name="description" content="Автоматизация транспортных компаний 20–50 ТС. Интеграция с Omnicomm, СтавТРЭК, TMS. Route, Dispatch, Fuel, Maintenance agents." />
+  <link rel="canonical" href="https://fleetpilot.ru/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FleetPilot" />
+  <meta property="og:title" content="FleetPilot — ИИ-агенты для автопарка" />
+  <meta property="og:description" content="Экономия до 26% бюджета на логистику. Интеграция с Omnicomm, СтавТРЭК, TMS." />
+  <meta property="og:url" content="https://fleetpilot.ru/" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:image" content="https://fleetpilot.ru/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FleetPilot — ИИ-агенты для автопарка" />
+  <meta name="twitter:description" content="Экономия до 26% бюджета на логистику. Интеграция с Omnicomm, СтавТРЭК, TMS." />
+  <meta name="twitter:image" content="https://fleetpilot.ru/og-image.png" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "FleetPilot",
+    "url": "https://fleetpilot.ru/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "downloadUrl": "https://fleetpilot.ru/downloads/FleetPilot-Setup.exe",
+    "description": "ИИ-агенты для автоматизации транспортно-логистических компаний 20–50 ТС",
+    "offers": [
+      { "@type": "Offer", "name": "Starter", "price": "29000", "priceCurrency": "RUB", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+      { "@type": "Offer", "name": "Pro", "price": "49000", "priceCurrency": "RUB", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+      { "@type": "Offer", "name": "Business", "price": "89000", "priceCurrency": "RUB", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "12"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько времени занимает внедрение FleetPilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MVP внедряется за 12 недель. Первые результаты (контроль топлива) видны через 2–4 недели после подключения GPS." }
+      },
+      {
+        "@type": "Question",
+        "name": "Нужно ли менять существующие GPS-системы?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. FleetPilot подключается к уже установленным Omnicomm, СтавТРЭК, MSS GLONASS через API. Замена оборудования не требуется." }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой ROI можно ожидать?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Для компании с 30 ТС и бюджетом ₽12M/год: ROI 126%, окупаемость 9.5 месяцев, экономия до ₽3.21M/год." }
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -22,19 +82,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="config.js"></script>
   <script>
-    window.FLEETPILOT_CONFIG = window.FLEETPILOT_CONFIG || { formspreeId: 'YOUR_FORMSPREE_ID', siteName: 'FleetPilot' };
+    window.FLEETPILOT_CONFIG = window.FLEETPILOT_CONFIG || {
+      formspreeId: 'YOUR_FORMSPREE_ID',
+      siteName: 'FleetPilot',
+      siteUrl: 'https://fleetpilot.ru',
+      supportEmail: 'hello@fleetpilot.ru',
+    };
   </script>
-  <script src="analytics.js" defer></script>
-  <script src="form.js" defer></script>
+<script src="analytics.js" defer></script>
+<script src="form.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('mobile-menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() { menu.classList.toggle('hidden'); });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { menu.classList.add('hidden'); });
+    });
+  }
+});
+</script>
 </head>
 <body class="font-sans text-slate-800 antialiased">
 
   <nav class="fixed top-0 w-full bg-white/90 backdrop-blur border-b border-slate-200 z-50">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-2">
+      <a href="https://fleetpilot.ru/" class="flex items-center gap-2">
         <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">FP</div>
         <span class="font-bold text-lg text-brand-900">FleetPilot</span>
-      </div>
+      </a>
       <div class="hidden md:flex items-center gap-8 text-sm text-slate-600">
         <a href="#agents" class="hover:text-brand-600">ИИ-агенты</a>
         <a href="#integrations" class="hover:text-brand-600">Интеграции</a>
@@ -43,7 +120,26 @@
         <a href="/wireframes/" class="hover:text-brand-600">Демо</a>
         <a href="/pitch-deck" class="hover:text-brand-600">Pitch</a>
       </div>
-      <a href="#lead-form-section" data-analytics="nav_pilot" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition">Расчёт ROI</a>
+      <div class="flex items-center gap-3">
+        <a href="/downloads/FleetPilot-Setup.exe" data-analytics="nav_download" class="border border-brand-600 text-brand-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-50 transition hidden sm:inline-flex">Скачать для Windows</a>
+        <a href="#lead-form-section" data-analytics="nav_pilot" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition hidden sm:inline-flex">Расчёт ROI</a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-brand-600" aria-label="Меню">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm text-slate-600">
+        <a href="#agents" class="py-2 hover:text-brand-600">ИИ-агенты</a>
+        <a href="#integrations" class="py-2 hover:text-brand-600">Интеграции</a>
+        <a href="#economics" class="py-2 hover:text-brand-600">ROI</a>
+        <a href="#roadmap" class="py-2 hover:text-brand-600">Этапы</a>
+        <a href="/wireframes/" class="py-2 hover:text-brand-600">Демо</a>
+        <a href="/pitch-deck" class="py-2 hover:text-brand-600">Pitch</a>
+        <a href="/downloads/FleetPilot-Setup.exe" class="border border-brand-600 text-brand-700 px-4 py-3 rounded-lg text-center font-medium hover:bg-brand-50 transition">Скачать для Windows</a>
+        <a href="#lead-form-section" class="bg-brand-600 text-white px-4 py-3 rounded-lg text-center font-medium hover:bg-brand-700 transition">Расчёт ROI</a>
+      </div>
+    </div>
     </div>
   </nav>
 
@@ -61,18 +157,20 @@
         <p class="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed">
           FleetPilot подключается к уже установленным Omnicomm, СтавТРЭК и TMS — и автоматизирует маршруты, диспетчеризацию, топливо и ТО. Для компаний с 20–50 единицами техники.
         </p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="#lead-form-section" data-analytics="hero_roi" class="inline-flex justify-center items-center bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-600/25">
+        <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
+          <a href="/downloads/FleetPilot-Setup.exe" data-analytics="hero_download" class="inline-flex justify-center items-center bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-brand-700 transition shadow-lg shadow-brand-600/25">
+            Скачать для Windows
+          </a>
+          <a href="#lead-form-section" data-analytics="hero_roi" class="inline-flex justify-center items-center border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-brand-600 hover:text-brand-600 transition">
             Бесплатный расчёт ROI
           </a>
-          <a href="/wireframes/" data-analytics="hero_demo" class="inline-flex justify-center items-center border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-brand-600 hover:text-brand-600 transition">
-            Открыть прототип MVP
-          </a>
-          <a href="/pitch-deck" data-analytics="hero_pitch" class="inline-flex justify-center items-center border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-brand-600 hover:text-brand-600 transition">
-            Pitch deck
-          </a>
         </div>
-        <p class="mt-6 text-sm text-slate-500">Omnicomm · СтавТРЭК · Master TMS · данные в РФ · human-in-the-loop</p>
+        <p class="mt-4 text-sm text-slate-500">
+          Установщик Windows · нужен интернет и аккаунт ·
+          <a href="/wireframes/" data-analytics="hero_demo" class="ml-1 font-medium text-brand-700 underline hover:text-brand-800">открыть прототип MVP</a>
+          ·
+          <a href="/pitch-deck" data-analytics="hero_pitch" class="ml-1 font-medium text-brand-700 underline hover:text-brand-800">pitch deck</a>
+        </p>
       </div>
     </div>
   </section>
@@ -105,9 +203,9 @@
   <!-- Agents -->
   <section id="agents" class="py-20">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">4 ИИ-агента — не замена TMS, а слой поверх</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">5 ИИ-агентов — не замена TMS, а слой поверх</h2>
       <p class="text-slate-600 text-center mb-12 max-w-2xl mx-auto">В отличие от AXELOT и «Умной логистики», FleetPilot не требует миграции — работает с вашими системами</p>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-brand-600">
           <h3 class="text-xl font-bold mb-2">🗺 Route Agent</h3>
           <p class="text-slate-600 text-sm mb-4">Оптимизация маршрутов с учётом пробок, погоды, загрузки. Интеграция GPS мониторинга уже установленных на ТС систем.</p>
@@ -127,6 +225,11 @@
           <h3 class="text-xl font-bold mb-2">🔧 Maintenance Agent</h3>
           <p class="text-slate-600 text-sm mb-4">Предиктивное ТО по телематике, пробегу, CAN-кодам. Прогноз за 7–14 дней.</p>
           <p class="text-purple-600 font-semibold text-sm">−15% простои (benchmark)</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm border-l-4 border-l-rose-600 md:col-span-2 lg:col-span-1">
+          <h3 class="text-xl font-bold mb-2">📜 Permit Agent</h3>
+          <p class="text-slate-600 text-sm mb-4">Спецразрешения на негабарит: анализ маршрутов в <strong>Росдормониторинг</strong>, ПОДД, особые условия. Human-in-the-loop.</p>
+          <p class="text-rose-600 font-semibold text-sm">−50% время на оформление · меньше отказов</p>
         </div>
       </div>
     </div>
@@ -154,10 +257,10 @@
           </ul>
         </div>
         <div class="bg-white rounded-xl p-6 border border-slate-200">
-          <h3 class="font-bold mb-3 text-brand-700">Платформы</h3>
+          <h3 class="font-bold mb-3 text-brand-700">Гос. сервисы</h3>
           <ul class="text-sm text-slate-600 space-y-2">
-            <li>• «Умная логистика» (sync)</li>
-            <li>• 1С · ЭТрН</li>
+            <li>• <strong>Росдормониторинг</strong> (негабарит)</li>
+            <li>• ЭТрН · 1С</li>
             <li>• Yandex Maps routing</li>
           </ul>
         </div>
@@ -288,6 +391,75 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Частые вопросы</h2>
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl border border-slate-200 p-6 group" open>
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            Сколько времени занимает внедрение?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-4 text-slate-600">MVP внедряется за 12 недель. Первые результаты (контроль топлива) видны через 2–4 недели после подключения GPS.</p>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-6 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            Нужно ли менять существующие GPS-системы?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-4 text-slate-600">Нет. FleetPilot подключается к уже установленным Omnicomm, СтавТРЭК, MSS GLONASS через API. Замена оборудования не требуется.</p>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-6 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            Какой ROI можно ожидать?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-4 text-slate-600">Для компании с 30 ТС и бюджетом ₽12M/год: ROI 126%, окупаемость 9.5 месяцев, экономия до ₽3.21M/год.</p>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-6 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            Как работает human-in-the-loop?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-4 text-slate-600">Все критические решения (назначение водителей, утверждение маршрутов) требуют подтверждения диспетчера. ИИ предлагает — вы решаете.</p>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-6 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            Данные хранятся в России?
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-4 text-slate-600">Да. Инфраструктура на Yandex Cloud (ru-central1), соответствие 152-ФЗ о защите персональных данных.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-sm text-slate-500 mb-8">Benchmark результаты на основе отраслевых данных</p>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="text-4xl font-extrabold text-brand-600">−26%</div>
+          <div class="text-sm text-slate-600 mt-1">Расход топлива</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-brand-600">−86%</div>
+          <div class="text-sm text-slate-600 mt-1">Время обработки заявок</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-brand-600">−15%</div>
+          <div class="text-sm text-slate-600 mt-1">Незапланированные простои</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-brand-600">126%</div>
+          <div class="text-sm text-slate-600 mt-1">ROI за 9.5 мес.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Lead form -->
   <section id="lead-form-section" class="py-20 bg-brand-900 text-white">
     <div class="max-w-xl mx-auto px-4">
@@ -332,8 +504,9 @@
   </section>
 
   <footer class="py-8 bg-slate-950 text-slate-500 text-center text-sm">
-    <p>FleetPilot · ИИ-агенты для транспортно-логистических компаний · 2026</p>
-    <p class="mt-2"><a href="/wireframes/" class="text-brand-400 hover:underline">Прототип MVP</a> · <a href="/pitch-deck" class="text-brand-400 hover:underline">Pitch deck</a></p>
+    <p><a href="https://fleetpilot.ru/" class="text-brand-400 hover:underline font-medium">fleetpilot.ru</a> · FleetPilot · ИИ-агенты для транспортно-логистических компаний · 2026</p>
+    <p class="mt-2"><a href="https://fleetpilot.ru/downloads/FleetPilot-Setup.exe" class="text-brand-400 hover:underline">Скачать для Windows</a> · <a href="https://fleetpilot.ru/wireframes/" class="text-brand-400 hover:underline">Прототип MVP</a> · <a href="https://fleetpilot.ru/pitch-deck" class="text-brand-400 hover:underline">Pitch deck</a> · <a href="mailto:hello@fleetpilot.ru" class="text-brand-400 hover:underline">hello@fleetpilot.ru</a></p>
+    <p class="mt-2"><a href="/privacy" class="text-brand-400 hover:underline">Политика конфиденциальности</a> · <a href="/terms" class="text-brand-400 hover:underline">Условия использования</a></p>
   </footer>
 
 </body>

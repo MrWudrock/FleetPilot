@@ -69,9 +69,9 @@ git push -u origin main
 
 После деплоя откройте:
 
-- `https://ВАШ-ПРОЕКТ.vercel.app/` — landing
-- `https://ВАШ-ПРОЕКТ.vercel.app/wireframes` — прототип
-- `https://ВАШ-ПРОЕКТ.vercel.app/pitch-deck` — pitch deck
+- `https://fleetpilot.ru/` — landing
+- `https://fleetpilot.ru/wireframes` — прототип
+- `https://fleetpilot.ru/pitch-deck` — pitch deck
 
 Каждый **push в `main`** → Vercel автоматически пересобирает сайт.
 

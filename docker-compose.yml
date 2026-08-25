@@ -1,0 +1,72 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: fleetpilot
+      POSTGRES_PASSWORD: fleetpilot
+      POSTGRES_DB: fleetpilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fleetpilot -d fleetpilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ./apps/api
+    command: sh entrypoint.sh
+    environment:
+      DATABASE_URL: postgresql://fleetpilot:fleetpilot@postgres:5432/fleetpilot
+      REDIS_URL: redis://redis:6379/0
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      SECRET_KEY: dev-secret-change-in-production
+      CREDENTIALS_ENCRYPTION_KEY: dev-credentials-key-change-in-production
+      ALLOW_PUBLIC_SIGNUP: "true"
+      # DEBUG=true allows the insecure default SECRET_KEY above (local only).
+      # Production: DEBUG=false and a strong unique SECRET_KEY.
+      DEBUG: "true"
+    ports:
+      - "8800:8000"
+    volumes:
+      - ./apps/api:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Prefer local `npm run dev` in apps/web for UI (avoids stale .next / node_modules in Docker).
+  # Start container only when needed: docker compose --profile docker-web up -d --build web
+  web:
+    profiles: ["docker-web"]
+    build:
+      context: ./apps/web
+    # Anonymous /app/node_modules volume can lag behind package.json — refresh on start.
+    command: sh -c "npm install && npm run dev"
+    environment:
+      API_URL: http://api:8000
+      NEXT_PUBLIC_API_URL: http://localhost:8800
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
